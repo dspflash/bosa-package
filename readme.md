@@ -25,7 +25,7 @@
 
 [Windows客户端XOne操作演示截图动画](https://dspflash.github.io/res/mes_trace/mes_trace.gif){:target="_blank"}
 
-![](https://dspflash.github.io/res/mes_trace/mes_trace.gif).
+![](https://dspflash.github.io/res/bosa/package.gif).
 
 <a href="https://dspflash.github.io/res/mes_trace/mobile.gif" target="_blank">Android手机客户端操作演示截图动画[无法查看可点击此]</a>
 
