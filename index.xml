@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<BXML navtype="tab" title="包装管理软件" font-size="10">
+<BXML navtype="tab" title="3UCS包装管理软件" font-size="10">
 <DbDetails remark="For mysql BizXML Tool should pass 'mysql' as dbtype in config">
 	<Host>localhost</Host>
 	<SubDriver>MySQL</SubDriver>
