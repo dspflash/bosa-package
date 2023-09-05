@@ -1,0 +1,10 @@
+﻿<GroupBox Name="GBDVpkg_pkg" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_pkg_vLst" ToolTip="ttp_pkg_pkg_v" Size="700,450" Heading="pkg_id,100;pkg_x_id,100;created_dt,150;created_by,30;updated_dt,150;updated_by,30;pkg_pkg_id,100;" onload="0" loadedclick="0">
+	<DbDetails >
+<Index>pkg_pkg_id</Index>
+<DbTable>bosa.pkg_pkg p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.pkg p1 on p.pkg_x_id=p1.pkg_id</DbTable>
+<Data>p0.pkg_sn pkg_id,p1.pkg_sn pkg_x_id,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_pkg_id</Data>
+<Order>pkg_pkg_id</Order></DbDetails>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkgbox_ops.xml"/>
+</ListCtrl>
+</Ctrls></GroupBox>

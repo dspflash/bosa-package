@@ -1,0 +1,62 @@
+﻿<WndTap Name="TagPrint" Text="标签列印" popup="1">
+	<PageCfg PaddingBox="1,5,1,5" PaddingBoxRow="0,0,0,0" PaddingBoxCol="0,0,0,0" CtrlSize="0"/>
+	<Ctrls>
+		<GroupBox Name="GBTagPrint" Text="" font-size="10"><Ctrls>
+		<GroupBox Name="TL" Text=""><Ctrls>
+			<Label Name="lb_product_spec" Size="30,20" Text="P/N:"/>
+			<!--Label Name="product_spec" Size="60,15" tooltip="ttp_product_spec" Text="SWBO-D1311-S2491-A1001"/-->
+			<MagicCtrl Name="qr_product_spec" link="tip:product_spec" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+				<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+				<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_product_spec[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_product_spec[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+			</MagicCtrl>
+		<BR autoheight="1"/>
+		<Label Name="lb_lot"  Size="30,20" Text="Lot No:"/>
+		<!--Label Name="lot" Size="160,15" tooltip="lot" Text=""/-->    
+		<MagicCtrl Name="qr_lot" link="tip:qr_lot" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+			<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+			<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_lot[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_lot[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+		</MagicCtrl>
+		<BR autoheight="1"/>
+			<Label Name="lb_quantity"  Size="30,20" Text="QTY:"/>
+			<!--Label Name="quantity" Size="60,15" tooltip="quantity" Text=""/-->    
+			<MagicCtrl Name="qr_quantity" link="tip:qr_quantity" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+				<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+				<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_quantity[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_quantity[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+			</MagicCtrl>
+			<BR autoheight="1"/>
+			<Label Name="lb_pkg_no"  Size="30,20" Text="盒号:"/>
+			<!--Label Name="pkg_no" Size="60,15" tooltip="pkg_no" Text=""/-->    
+			<MagicCtrl Name="qr_pkg_no" link="tip:qr_pkg_no" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+				<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+				<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_pkg_no[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_pkg_no[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+			</MagicCtrl>
+		</Ctrls></GroupBox>
+
+		<GroupBox Name="TR" Text=""><Ctrls>
+		<Label Name="lb_date"  Size="50,20" Text="Date Code:"/>
+		<!--Label Name="dt" Size="60,15" tooltip="date" Text=""/-->    
+		<MagicCtrl Name="qr_date" link="tip:qr_date" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+			<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+			<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_date[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_date[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+		</MagicCtrl>
+		<BR autoheight="1"/>
+		<Label Name="lb_pgk_date"  Size="50,20" Text="PGK Date:"/>
+		<!--Label Name="pgk_date" Size="60,15" tooltip="ttp_pgk_date" Text=""/-->
+		<MagicCtrl Name="qr_pgk_date" link="tip:qr_pgk_date" images="layout/ucin,logo.png" Size="100,20" OnLoad="init">
+			<interface id="barencode" type="IBizInterface" codebase="barencode.dll" dir="layout/ucin/" classid="B65ABE3E-702E-4762-99FD-FB40546733B0" version="3.1"/>
+			<OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1><if cond="%{qr_pgk_date[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}"><DbDetails><queryFormat>select '%{qr_pgk_date[B65ABE3E-702E-4762-99FD-FB40546733B0.data]}' as images</queryFormat></DbDetails><submit namelist="DbDetails"/></if></OnEvent_B65ABE3E-702E-4762-99FD-FB40546733B0_1>
+		</MagicCtrl>
+		<BR autoheight="1"/>
+		<Label Name="lb_itemnumber"  Size="50,20" Text="料號:"/>
+		<Label Name="itemnumber" Size="100,20" tooltip="" Text=""/>
+		<BR autoheight="1"/>
+		<Label Name="lb_itemname"  Size="50,20" Text="品名:"/>
+		<Label Name="itemname" Size="100,20" tooltip="品名" Text="" wordbreak="true"/>    
+		<BR autoheight="1"/>
+		<Label Name="lb_QC"  Size="50,20" Text="QC:"/>
+		</Ctrls></GroupBox>
+		</Ctrls></GroupBox>
+		
+		<BR autoheight="1"/>
+		<Button Text="列印" ToolTip="ttp_print" Name="print" Size="100,40" visible="true"><OnClick><printer device="" Orientation_="2" Color_="2" PaperWidth_="" copies_=""></printer><submit next="GBTagPrint" function="print" namelist="printer"/></OnClick></Button>
+	</Ctrls></WndTap>

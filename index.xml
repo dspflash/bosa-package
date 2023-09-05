@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<BXML navtype="tab" title="包装管理软件" font-size="10">
+<DbDetails remark="For mysql BizXML Tool should pass 'mysql' as dbtype in config">
+	<Host>localhost</Host>
+	<SubDriver>MySQL</SubDriver>
+	<Database>bosa</Database>
+	<User>i3u</User>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="pass" href="config/db.xml"/>
+	<config>select 'mysql' as dbtype,1 as user_id</config>		
+	</DbDetails>
+<EventHandlers/>
+<EventTriggers/>
+<var expr="1" name="biztoolsqleditor"/>
+<var expr="1" name="biztoolinitdb"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\general.xml"/>
+<WndTaps>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_vm.xml"/>	
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_v.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bag_v.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="carton_v.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_specification_v.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_vm.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="DataAcquire.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_property_v.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_print_v.xml" popup="1"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="carton_print_v.xml" popup="1"/>
+	</WndTaps>
+</BXML>

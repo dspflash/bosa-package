@@ -1,0 +1,10 @@
+﻿<GroupBox cols="xs12 sm6 md4" Name="GBOPVpkg_specification"><Ctrls>
+<TAB/><Button Text="initial" ToolTip="ttp_initial" Name="initialpkg_specification" Size="50,20">
+<OnClick><submit next="pkg_specification_vLst" function="initial"/><submit next="records_pkg_specification" function="initial"/></OnClick></Button>
+<TAB/><Button Text="firstpage" Name="FPpkg_specification_vLst" Size="50,20">
+<OnClick><submit next="pkg_specification_vLst" function="GetPage(first)"/><submit next="records_pkg_specification"/></OnClick></Button>
+<Button Text="prepage" Name="PREpkg_specification_vLst" Size="50,20">
+<OnClick><submit next="pkg_specification_vLst" function="GetPage(Pre)"/></OnClick></Button>
+<Button Text="nextpage" Name="NPpkg_specification_vLst" Size="50,20">
+<OnClick><submit next="pkg_specification_vLst" function="GetPage(Next)"/></OnClick></Button>
+</Ctrls></GroupBox>

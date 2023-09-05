@@ -1,0 +1,14 @@
+﻿<GroupBox Name="GBDVitem" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="item_vLst" ToolTip="ttp_item_v" Size="700,450" OnLoad="init" DataJoin="%{this}%{prop}" DataJoinKey="item_id_m"  Heading="" loadedclick="0">
+	<DbDetails >
+<Index>item_id</Index>
+<DbTable>bosa.item i</DbTable>
+<Data>i.item_number,i.item_name,i.product_line,i.created_by,i.creation_date,i.last_update_by,i.last_update_date,i.item_id_m,i.item_id</Data>
+<Order>item_id</Order></DbDetails>
+<MDX id="prop" datatype="string"><DbDetails><DbTable>item_properties i left join item_property i0 on i.property_id=i0.property_id</DbTable>where 	<Index>h_id </Index><MDX>item_id_m,propname,propvalue</MDX><Data>item_id_m,i0.prop_display_name propname,i.property_value propvalue</Data><Order/><Where>and item_status!=278</Where><queryFormat>select %{data} from %{dbtable} where (org_id,item_id_m) IN (select * from(SELECT i.org_id,i.item_id_m from item i limit %{StartRow},%{PgSize}) as orgitem)</queryFormat></DbDetails></MDX><DbDetails><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} where i.org_id='%{orgid}' %{where} limit %{StartRow},%{PgSize}</queryFormat></DbDetails>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_ops.xml"/>
+<OnChanged>
+<assign name="pgcur_item" expr="js(%{item_vLst[currentpage]}+1)"/>
+<assign name="pgscb_item" expr="js(%{item_vLst[currentpage]}+1)" function="SetSel"/>
+</OnChanged></ListCtrl>
+</Ctrls></GroupBox>

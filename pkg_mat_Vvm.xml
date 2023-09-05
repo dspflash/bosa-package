@@ -1,0 +1,60 @@
+﻿<GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_statistic_vLst" ToolTip="ttp_pkg_mat_v" Size="700,80" DataJoin="%{this}%{prop}%{carton}%{bag}%{box}%{deliveryinfo}" DataJoinKey="item_id_m"  Heading="" loadedclick="0">
+<MDX id="prop" datatype="string">
+<DbDetails>
+<DbTable>item_properties i left join item_property i0 on i.property_id=i0.property_id</DbTable>where 	
+<Index>h_id </Index>
+<MDX>item_id_m,propname,propvalue</MDX>
+<Data>item_id_m,i0.prop_display_name propname,i.property_value propvalue</Data><Order/><Where>and item_status!=278</Where><queryFormat>select %{data} from %{dbtable} where (org_id,item_id_m) IN (select * from(SELECT i.org_id,i.item_id_m FROM item i 
+JOIN mac_10gbosadata m ON m.ProductBill=i.item_number 
+JOIN pkg_mat pm ON m.sn=pm.mat_sn
+JOIN pkg p0 ON p0.pkg_id=pm.pkg_id
+WHERE %{where} LIMIT 0,1) as orgitem)</queryFormat></DbDetails></MDX>
+<MDX id="carton" datatype="string" remark="carton records">
+	<DbDetails>
+	<MDX>item_id_m,,</MDX>
+	<Data>i.item_id_m,pkg_sn 包装箱号,COUNT(*) 包装箱内产品数量</Data>
+	<queryFormat>SELECT %{data} FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill JOIN pkg_pkg  pg ON pb.pkg_id=pg.pkg_x_id JOIN pkg_pkg pc ON pg.pkg_id=pc.pkg_x_id join pkg c on pc.pkg_id=c.pkg_id where c.pkg_id=(SELECT pc.pkg_id 
+FROM pkg_pkg pc 
+JOIN pkg_pkg pg ON pc.pkg_x_id=pg.pkg_id
+JOIN pkg p0 ON pg.pkg_x_id=p0.pkg_id
+WHERE %{where} limit 0,1) GROUP BY c.pkg_id</queryFormat> 
+	</DbDetails></MDX>
+<MDX id="bag" datatype="string" remark="bag records">
+	<DbDetails>
+	<MDX>item_id_m,,</MDX>
+	<Data>i.item_id_m,pkg_sn 包装袋号,COUNT(*) 包装袋内产品数量</Data>
+	<queryFormat>SELECT %{data} FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill JOIN pkg_pkg pg ON pb.pkg_id=pg.pkg_x_id join pkg g on pg.pkg_id=g.pkg_id where g.pkg_id=(SELECT pg.pkg_id 
+FROM pkg_pkg pg
+JOIN pkg p0 ON pg.pkg_x_id=p0.pkg_id
+WHERE %{where} limit 0,1) GROUP BY g.pkg_id</queryFormat> 
+	</DbDetails></MDX>
+<MDX id="box" datatype="string" remark="box records">
+	<DbDetails>
+	<MDX>item_id_m,,</MDX>
+	<Data>i.item_id_m,pkg_sn 包装盒号,COUNT(*) 包装盒内产品数量</Data>
+	<queryFormat>SELECT %{data} FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill join pkg p0 on pb.pkg_id=p0.pkg_id where %{where} GROUP BY p0.pkg_id</queryFormat> 
+	</DbDetails></MDX>
+<DbDetails>
+	<queryFormat>SELECT i.item_id_m FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill join pkg p0 on pb.pkg_id=p0.pkg_id where %{where} GROUP BY p0.pkg_id</queryFormat> 
+	</DbDetails>
+<MDX id="deliveryinfo" datatype="string" remark="deliveryinfo">
+	<DbDetails>
+	<MDX>item_id_m,,</MDX>
+	<Data>i.item_id_m,'%{date_delivery}' 发货时间,product_line</Data>
+	<queryFormat>SELECT %{data} FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill join pkg p0 on pb.pkg_id=p0.pkg_id where %{where} GROUP BY p0.pkg_id</queryFormat> 
+	</DbDetails></MDX>
+<DbDetails>
+	<queryFormat>SELECT i.item_id_m FROM pkg_mat pb JOIN mac_10gbosadata m ON m.SN=pb.mat_sn JOIN item i ON i.item_number=m.ProductBill join pkg p0 on pb.pkg_id=p0.pkg_id where %{where} GROUP BY p0.pkg_id</queryFormat> 
+	</DbDetails>
+</ListCtrl>
+<BR AutoHeight="1"/>
+<ListCtrl Name="pkg_mat_vLst" ToolTip="ttp_pkg_mat_v" Size="700,450" Heading="" loadedclick="0">
+	<DbDetails >
+<Index>pkg_mat_id</Index>
+<DbTable>item i JOIN mac_10gbosadata m ON m.ProductBill=i.item_number 
+JOIN pkg_mat p ON m.sn=p.mat_sn left join bosa.pkg p0 on p.pkg_id=p0.pkg_id</DbTable>
+<Data>m.*,p0.pkg_sn pkg_id,m.sn mat_id,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_mat_id</Data>
+<Order>pkg_mat_id</Order></DbDetails>
+</ListCtrl>
+</Ctrls></GroupBox>

@@ -1,0 +1,50 @@
+﻿<GroupBox Name="GBDEDITitem_properties"><Ctrls>
+<GroupBox Multiline="0" Name="GB_item_id_m" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_item_id_m" Text="item_id_m" readonly="true"/>
+<TextBox Weight="110" Size="110,20" Name="item_id_m" Text="" ToolTip="ttp_item_id_m" readonly="true">
+	<DbDetails>
+<Index>item_id_m</Index>
+<DbTable>bosa.item</DbTable>
+<Data>item_number,item_id_m</Data>
+<Where/>
+<queryFormat/></DbDetails></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_property_id" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" selectedIndex="0" Size="120,20" Name="lb_property_id" Text="property_id" onload="init"/>
+<ComboBox selectedIndex="0" Weight="110" Size="110,100" Name="property_id" Text="" ToolTip="ttp_property_id" onload="init">
+	<DbDetails>
+<Index>property_id</Index>
+<DbTable>bosa.item_property</DbTable>
+<Data>prop_display_name,property_id</Data>
+<Where/>
+<queryFormat/></DbDetails></ComboBox>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_property_value" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_property_value" Text="property_value"/>
+<TextBox Weight="110" Size="110,20" Name="property_value" Text="" ToolTip="ttp_property_value"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_by" Visible="false" Text="created_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="created_by" Visible="false" Text="" ToolTip="ttp_created_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_creation_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_creation_date" Visible="false" Text="creation_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="creation_date" Visible="false" Text="" ToolTip="ttp_creation_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_by" Visible="false" Text="last_update_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="last_update_by" Visible="false" Text="" ToolTip="ttp_last_update_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_date" Visible="false" Text="last_update_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="last_update_date" Visible="false" Text="" ToolTip="ttp_last_update_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_idx" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_idx" Visible="false" Text="idx" readonly="true"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="idx" Visible="false" Text="" ToolTip="ttp_idx" readonly="true"><OnEnChange><if cond="'%{idx}'"><SetVisible name="insertitem_properties" Visible="0"/><SetVisible name="modifyitem_properties" Visible="1"/><else/><SetVisible name="insertitem_properties" Visible="1"/><SetVisible name="modifyitem_properties" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_org_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_org_id" Visible="false" Text="org_id"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="org_id" Visible="false" Text="" ToolTip="ttp_org_id"/>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

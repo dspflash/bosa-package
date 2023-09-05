@@ -1,0 +1,17 @@
+﻿<GroupBox Size="100,100" Name="GBOPVitem_property" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" Name="deleteitem_property" Text="delete" ToolTip="ttp_deleteitem_property">
+<OnClick>
+	<DbDetails fcsm="1">
+<DbTable>bosa.item_property</DbTable>
+<Where>property_id='%{item_propertyLst[property_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit function="click" next="searchitem_property"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="searchitem_property" Text="refresh" ToolTip="ttp_refreshitem_property">
+<OnClick><submit next="item_propertyLst"/>	</OnClick>
+</Button>
+<TAB/><TAB/><Button OnClick="(item_propertyLst)GetPage(First)" Size="50,20" Name="FPitem_propertyLst" Text="firstpage"/>
+<TAB/><Button Weight="50" OnClick="(item_propertyLst)GetPage(Pre)" Size="50,20" Name="PREitem_propertyLst" Text="prepage"/>
+<TAB/><Button Weight="50" OnClick="(item_propertyLst)GetPage(Next)" Size="50,20" Name="NPitem_propertyLst" Text="nextpage"/>
+</Ctrls></GroupBox>

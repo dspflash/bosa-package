@@ -1,0 +1,28 @@
+﻿<WndTap Name="pkg_specification_pick" Text="pkg_specification_Pick">
+<var name="searchtmpl"><specification_name format="(p.specification_name like '%%{opvalue}%')"/><pkg_tp format="(p.pkg_tp like '%%{opvalue}%')"/><max_units format="(p.max_units like '%%{opvalue}%')"/><bc_label format="(p.bc_label like '%%{opvalue}%')"/><specification format="(p.specification like '%%{opvalue}%')"/><structure format="(p.structure like '%%{opvalue}%')"/><created_by format="(p.created_by like '%%{opvalue}%')"/><creation_date format="(p.creation_date between '%{creation_date[datetime]}' and '%{creation_date[datetime2]}')"/><last_update_by format="(p.last_update_by like '%%{opvalue}%')"/><last_update_date format="(p.last_update_date between '%{last_update_date[datetime]}' and '%{last_update_date[datetime2]}')"/><specification_id format="(p.specification_id like '%%{opvalue}%')"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\pkg_specification.xml"/>
+<Ctrls><GroupBox  Name="GBpkg_specification" id="pkg_specification" Text="pkg_specification" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_specification_Vs.xml"/>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVpkg_specification" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetpkg_specification" Name="resetpkg_specification" Size="50,20">
+	<OnClick>
+		<submit next="GBDEDITpkg_specification" function="reset"/>
+	</OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchpkg_specification" Name="gsearchpkg_specification" Size="50,20">
+	<OnClick>
+		<search next="pkg_specification_vLst" listed="0" prefixwhere="0" prefixand="0" inputed="1">%{searchtmpl}</search><submit next="GBDEDITpkg_specification" namelist="search" function="search"/>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Name="GBDVpkg_specification" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_specification_vLst" ToolTip="ttp_pkg_specification_v" Size="700,450" Heading="specification_name,250;pkg_tp,120;max_units,75;bc_label,250;specification,125;structure,580;created_by,60;creation_date,150;last_update_by,60;last_update_date,150;specification_id,60;" loadedclick="0">
+	<DbDetails >
+<Index>specification_id</Index>
+<DbTable>bosa.pkg_specification p</DbTable>
+<Data>p.specification_name,p.pkg_tp,p.max_units,p.bc_label,p.specification,p.structure,p.created_by,p.creation_date,p.last_update_by,p.last_update_date,p.specification_id</Data>
+<Order>specification_id</Order></DbDetails>
+<OnClick><if cond="%{pkg_specification_vLst[specification_id]}"><DbDetails><Where>specification_id='%{pkg_specification_vLst[specification_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.%{frmwndctrl}"/><submit function="onok"/></if></OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

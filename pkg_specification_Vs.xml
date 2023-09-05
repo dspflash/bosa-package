@@ -1,0 +1,10 @@
+﻿<GroupBox Name="GBDEDITpkg_specification" text="Search" toggle="1"><Ctrls>
+<GroupBox Name="GB_specification_name" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_specification_name" Size="120,20" Text="specification_name" Align="Right"/>
+<TextBox Name="specification_name" Size="110,20" Text="" Weight="110" ToolTip="ttp_specification_name"></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Name="GB_pkg_tp" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_pkg_tp" Size="120,20" Text="pkg_tp" Align="Right"/>
+<ComboBox Name="pkg_tp" Size="110,100" Text="" Weight="110" Items="box|bag|carton" ToolTip="ttp_pkg_tp"></ComboBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

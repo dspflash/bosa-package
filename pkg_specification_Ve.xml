@@ -1,0 +1,13 @@
+﻿<WndTap Name="pkg_specification" Text="pkg_specification" Ver="2">
+<var name="refreshAfterEdit" expr="2"/>
+<var name="dataRequired" expr="specification_name,pkg_tp,max_units,specification"/>
+<var name="dataRequireless" expr=""/>
+<xi:include href="lan\pkg_specification.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<Ctrls>
+<GroupBox  Name="GBpkg_specification" id="pkg_specification" Text="pkg_specification" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_specification_GBDEDIT.xml"/>
+<BR AutoHeight="1"/><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_specification_GBOPE.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_specification_Vh.xml"/></Ctrls></GroupBox></Ctrls>
+	<OnChanged></OnChanged>
+	<OnActivate><SetVisible name="insertpkg_specification" Visible="1"/><SetVisible name="modifypkg_specification" Visible="0"/></OnActivate>
+</WndTap>

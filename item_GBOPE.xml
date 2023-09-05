@@ -1,0 +1,37 @@
+﻿<GroupBox Size="100,100" Name="GBOPEitem" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" sqlpkinsert="item_id" Name="insertitem" Text="create" ToolTip="ttp_createitem">
+<OnClick>
+<DbDetails mode="insert" fcsm="1">
+<DbTable>bosa.item</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>item_number,item_name,product_line</Data>
+<DataEx>created_by,creation_date,last_update_by,last_update_date;'%{operaid}',now(),'%{operaid}',now()</DataEx>
+<queryFormat>insert into %{table} %{data}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{insertitem[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="itemLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="1"><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.item_vLst"/></if></if></if></if>
+	</OnClick>
+	</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="modifyitem" Text="modify" ToolTip="ttp_modifyitem">
+<OnClick>
+<DbDetails mode="update" fcsm="1">
+<DbTable>bosa.item</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>item_number,item_name,product_line</Data>
+<DataEx>last_update_by,last_update_date;'%{operaid}',now()</DataEx>
+<Where>item_id='%{item_id}'</Where>
+<queryFormat>update %{table} set %{data} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{modifyitem[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="itemLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.item_vLst"/></if></if></if>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="resetitem" Text="reset" ToolTip="ttp_resetitem">
+<OnClick>
+<submit function="reset" next="GBDEDITitem"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="gsearchitem" visible="false" Text="Search" ToolTip="ttp_gsearchitem">
+<OnClick>
+<search prefixand="0" inputed="1" next="itemLst" prefixwhere="0" listed="0"/><submit namelist="search" function="search" next="GBDEDITitem"/>
+	</OnClick>
+</Button><TAB/>
+</Ctrls></GroupBox>

@@ -1,0 +1,14 @@
+﻿<GroupBox Name="GBDVpkg" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_vLst" ToolTip="ttp_pkg_v" Size="700,450" OnLoad="init" Heading="" loadedclick="0">
+	<DbDetails >
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg p LEFT JOIN bosa.pkg_mat pb ON pb.pkg_id=p.pkg_id LEFT JOIN mac_10gbosadata m ON m.SN=pb.mat_sn LEFT JOIN item i ON i.item_number=m.ProductBill LEFT JOIN bosa.pkg_specification p0 ON p.pkg_spec=p0.specification_id</DbTable>
+<Data>p.pkg_sn,p0.specification_name pkg_spec,p.remark,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_id</Data>
+<Order>pkg_id</Order></DbDetails>
+<DbDetails><Data>p.pkg_sn,p0.specification_name pkg_spec,COUNT(*) cnts,i.item_name,i.item_number,i.item_id_m,p.remark,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_id</Data><Where>where p.pkg_tp='box'</Where><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} %{where} GROUP BY p.pkg_id limit %{StartRow},%{PgSize}</queryFormat></DbDetails>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_ops.xml"/>
+<OnChanged>
+<assign name="pgcur_pkg" expr="js(%{pkg_vLst[currentpage]}+1)"/>
+<assign name="pgscb_pkg" expr="js(%{pkg_vLst[currentpage]}+1)" function="SetSel"/>
+</OnChanged></ListCtrl>
+</Ctrls></GroupBox>

@@ -1,0 +1,37 @@
+﻿<GroupBox Size="100,100" Name="GBOPEpkg_specification" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" sqlpkinsert="specification_id" Name="insertpkg_specification" Text="create" ToolTip="ttp_createpkg_specification">
+<OnClick>
+<DbDetails mode="insert" fcsm="1">
+<DbTable>bosa.pkg_specification</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>specification_name,pkg_tp,max_units,bc_label,specification,structure</Data>
+<DataEx>created_by,creation_date,last_update_by,last_update_date;'%{operaid}',now(),'%{operaid}',now()</DataEx>
+<queryFormat>insert into %{table} %{data}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{insertpkg_specification[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_specificationLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="1"><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_specification_vLst"/></if></if></if></if>
+	</OnClick>
+	</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="modifypkg_specification" Text="modify" ToolTip="ttp_modifypkg_specification">
+<OnClick>
+<DbDetails mode="update" fcsm="1">
+<DbTable>bosa.pkg_specification</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>specification_name,pkg_tp,max_units,bc_label,specification,structure</Data>
+<DataEx>last_update_by,last_update_date;'%{operaid}',now()</DataEx>
+<Where>specification_id='%{specification_id}'</Where>
+<queryFormat>update %{table} set %{data} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{modifypkg_specification[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_specificationLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_specification_vLst"/></if></if></if>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="resetpkg_specification" Text="reset" ToolTip="ttp_resetpkg_specification">
+<OnClick>
+<submit function="reset" next="GBDEDITpkg_specification"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="gsearchpkg_specification" visible="false" Text="Search" ToolTip="ttp_gsearchpkg_specification">
+<OnClick>
+<search prefixand="0" inputed="1" next="pkg_specificationLst" prefixwhere="0" listed="0"/><submit namelist="search" function="search" next="GBDEDITpkg_specification"/>
+	</OnClick>
+</Button><TAB/>
+</Ctrls></GroupBox>

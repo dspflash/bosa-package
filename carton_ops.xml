@@ -1,0 +1,10 @@
+﻿<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="modify"><DbDetails><Where>pkg_id='%{pkg_vLst[pkg_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.carton.pkgLst"/><assign name="$this.carton.frmwndctrl" expr="%{this}"/></op>
+<op text="print">
+	<assign name="carton_print.x" expr=""/></op>
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>bosa.pkg</DbTable>
+<Where>pkg_id='%{pkg_vLst[pkg_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>

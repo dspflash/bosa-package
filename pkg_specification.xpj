@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biztoolcfg jointbls="1" tableTxt="pkg_specification" header2Link="" qryfmtOpCreate="" referLst="0" lines2Link="" qryfmtOpUpdate="" exdata4select="" onLoadInit="0" loadedClick="0" tableNm="pkg_specification" LstTP="Lst">
+  <Ctrls>
+    <Ctrl Required="1" name="specification_name"/>
+    <Ctrl Required="1" name="pkg_tp"/>
+    <Ctrl noquery="1" Required="1" name="max_units"/>
+    <Ctrl noquery="1" name="bc_label"/>
+    <Ctrl noquery="1" Required="1" name="specification"/>
+    <Ctrl insertparam="'%{orgid}'" noquery="1" noUpdate="1" noused="1" name="org_id" ctrlhide="1"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=111" ctrldbname="bosa." xTp="ComboBox" name="dimension_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init" SelectedIndex="0"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" name="structure"/>
+    <Ctrl noquery="1" noused="1" name="length"/>
+    <Ctrl noquery="1" noused="1" name="height"/>
+    <Ctrl noquery="1" noused="1" name="width"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=112" ctrldbname="mes_trace." xTp="ComboBox" name="max_volume_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init" SelectedIndex="1"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="max_volume"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=113" ctrldbname="mes_trace." xTp="ComboBox" name="max_weight_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init" SelectedIndex="0"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="max_weight"/>
+    <Ctrl noquery="1" noused="1" name="ef_id"/>
+    <Ctrl noquery="1" noused="1" name="status"/>
+    <Ctrl noquery="1" noused="1" name="rev_enabled_cb"/>
+    <Ctrl noquery="1" noused="1" name="rev_number"/>
+    <Ctrl insertparam="'%{operaid}'" noquery="1" noUpdate="1" name="created_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" noUpdate="1" name="creation_date" ctrlhide="1"/>
+    <Ctrl insertparam="'%{operaid}'" noquery="1" updateparam="'%{operaid}'" name="last_update_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" updateparam="now()" name="last_update_date" ctrlhide="1"/>
+    <Ctrl noquery="1" noUpdate="1" noInsert="1" nomodify="1" name="specification_id" ctrlhide="1" noInAndUp="1"/>
+  </Ctrls>
+</biztoolcfg>

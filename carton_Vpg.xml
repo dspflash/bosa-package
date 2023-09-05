@@ -1,0 +1,18 @@
+﻿<GroupBox cols="xs12 sm6 md4" Multiline="0" Name="GBPGpkg"><Ctrls>
+<Label Align="Right" Text="Records" Name="lb_Records" Size="60,20"/>
+<TextBox Weight="40" ToolTip="ttp_records" Name="records_pkg" Size="40,20" OnLoad="init" readonly="1">
+<DbDetails fcsm="1">
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg p LEFT JOIN pkg_pkg pc ON pc.pkg_id=p.pkg_id LEFT JOIN pkg_mat pb LEFT JOIN mac_10gbosadata m ON m.SN=pb.mat_sn LEFT JOIN item i ON i.item_number=m.ProductBill LEFT JOIN pkg_pkg  pg ON pb.pkg_id=pg.pkg_x_id ON pg.pkg_id=pc.pkg_x_id LEFT JOIN bosa.pkg_specification p0 ON p.pkg_spec=p0.specification_id</DbTable><Where>where p.pkg_tp='carton'</Where>
+<Data>count(*) records</Data>
+<Order>pkg_id</Order><Queryformat>select %{data} from (select p.pkg_id from %{dbtable} %{where} GROUP BY p.pkg_id  ORDER BY p.pkg_id) t</Queryformat></DbDetails>
+<OnEnchange>
+<assign name="pgs_pkg" expr="js(Math.ceil(%{records_pkg}/%{pkg_vLst[countsperpage]}))"/>
+<assign name="pgscb_pkg" expr="js('1~'+Math.ceil(%{records_pkg}/%{pkg_vLst[countsperpage]}))" function="setitems"/>
+</OnEnchange>
+</TextBox>
+<!--ComboBox Weight="60" ToolTip="ttp_pgs" Name="pgscb_pkg" Size="60,20"><OnSelEndOK><submit next="pkg_vLst" function="GetPage(%{pgscb_pkg}-1)"/></OnSelEndOK></ComboBox-->
+<TextBox Weight="30" ToolTip="ttp_pgs" Name="pgs_pkg" Size="30,20" readonly="1"/>
+<TextBox Weight="30" ToolTip="ttp_pgcur" Name="pgcur_pkg" Size="30,20"/>
+<Button Text="go2Page" Name="go2pagepkg_vLst" Size="50,20"><OnClick><submit next="pkg_vLst" function="GetPage(%{pgcur_pkg}-1)"/></OnClick></Button>
+</Ctrls></GroupBox>

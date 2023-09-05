@@ -1,0 +1,35 @@
+﻿<Language name="pkg_mat">
+<Lang name="pkg_mat" value="料件入盒"/>
+<Lang name="pkg_mat_v" value="包装料件管理"/>
+<Lang name="TabEditpkg_mat" value="pkg_mat Edit"/>
+<Lang name="TabViewpkg_mat" value="pkg_mat View"/>
+<Lang name="pkg_id" value="包装箱"/>
+<Lang name="ttp_pkg_id" value=""/>
+<Lang name="mat_id" value="料件"/>
+<Lang name="ttp_mat_id" value=""/>
+<Lang name="created_dt" value=""/>
+<Lang name="ttp_created_dt" value=""/>
+<Lang name="created_by" value=""/>
+<Lang name="ttp_created_by" value=""/>
+<Lang name="updated_dt" value=""/>
+<Lang name="ttp_updated_dt" value=""/>
+<Lang name="updated_by" value=""/>
+<Lang name="ttp_updated_by" value=""/>
+<Lang name="pkg_mat_id" value="包装料件"/>
+<Lang name="ttp_pkg_mat_id" value=""/>
+<Lang name="ttp_operationpkg_mat" value=""/>
+<Lang name="ttp_createpkg_mat" value=""/>
+<Lang name="ttp_modifypkg_mat" value=""/>
+<Lang name="ttp_resetpkg_mat" value=""/>
+<Lang name="ttp_deletepkg_mat" value=""/>
+<Lang name="ttp_refreshpkg_mat" value=""/>
+<Lang name="operation" value=""/>
+<Lang name="create" value=""/>
+<Lang name="modify" value=""/>
+<Lang name="reset" value=""/>
+<Lang name="delete" value=""/>
+<Lang name="refresh" value=""/>
+<Lang name="firstpage" value=""/>
+<Lang name="prepage" value=""/>
+<Lang name="nextpage" value=""/>
+</Language>

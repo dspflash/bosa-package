@@ -1,0 +1,18 @@
+﻿<WndTap Text="carton_print" Name="carton_print" Ver="2" popup="1">
+<var name="qrok" expr="0"/>
+<PageCfg PaddingBox="5,5,5,5" PaddingBoxRow="0,0,0,0" PaddingBoxCol="0,0,0,0" CtrlSize="0"/>
+<Language name="bc_label_rule">
+<Lang name="batprint" value="勾选 连打 后，点击 列印 将自动从当前页列印至最后一页"/>
+</Language>
+<Ctrls>
+<GroupBox Text="tag_print" Name="GBtag_print" id="tag_print" Size="100,100"><Ctrls>
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="carton_print_GBD.xml"></xi:include><BR AutoHeight="1"/>
+	<!--Button Text="nextpage" ToolTip="ttp_print" Name="nextpage" Size="100,20" visible="true"><OnClick><if cond="%{cab_no}&lt;%{cabs_}"><assign name="cab_no" expr="js(%{cab_no}+1)"/><if cond="%{batprint}"><Sleep interval="500"/><submit next="print" function="click"/></if></if></OnClick></Button-->
+	<Button Text="print" ToolTip="ttp_print" Name="print" Size="100,20" visible="true"><OnClick><printer device="" copies_=""></printer><submit next="GBDEDITcarton_print" function="print" namelist="printer"/><if cond="%{batprint}"><Sleep interval="500"/><submit next="nextpage" function="click"/></if></OnClick></Button>
+	<!--CheckBox Name="batprint" Size="60,20" ToolTip="batprint" Text="连打" Checked="false"></CheckBox-->
+	<TextBox Text="00001" ToolTip="" Name="serial_no" Size="60,20" Visible="0"/>
+	</Ctrls></GroupBox>
+	</Ctrls>
+	<OnChanged/>
+	<OnActivate><SetVisible name="insertwip_wo_header" Visible="1"/><SetVisible name="modifywip_wo_header" Visible="0"/></OnActivate>
+	</WndTap>

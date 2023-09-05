@@ -1,0 +1,28 @@
+﻿<WndTap Name="pkg_mat_pick" Text="pkg_mat_Pick">
+<var name="searchtmpl"><pkg_id format="p.pkg_id='%{opvalue}'"/><mat_id format="p.mat_id='%{opvalue}'"/><created_dt format="(p.created_dt between '%{created_dt[datetime]}' and '%{created_dt[datetime2]}')"/><created_by format="(p.created_by like '%%{opvalue}%')"/><updated_dt format="(p.updated_dt between '%{updated_dt[datetime]}' and '%{updated_dt[datetime2]}')"/><updated_by format="(p.updated_by like '%%{opvalue}%')"/><pkg_mat_id format="(p.pkg_mat_id like '%%{opvalue}%')"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\pkg_mat.xml"/>
+<Ctrls><GroupBox  Name="GBpkg_mat" id="pkg_mat" Text="pkg_mat" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_Vs.xml"/>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVpkg_mat" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetpkg_mat" Name="resetpkg_mat" Size="50,20">
+	<OnClick>
+		<submit next="GBDEDITpkg_mat" function="reset"/>
+	</OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchpkg_mat" Name="gsearchpkg_mat" Size="50,20">
+	<OnClick>
+		<search next="pkg_mat_vLst" listed="0" prefixwhere="0" prefixand="0" inputed="1">%{searchtmpl}</search><submit next="GBDEDITpkg_mat" namelist="search" function="search"/>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_mat_vLst" ToolTip="ttp_pkg_mat_v" Size="700,450" Heading="pkg_id,100;mat_id,100;created_dt,150;created_by,30;updated_dt,150;updated_by,30;pkg_mat_id,100;" loadedclick="0">
+	<DbDetails >
+<Index>pkg_mat_id</Index>
+<DbTable>bosa.pkg_mat p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.MAC_10GBOSADATA m on p.mat_id=m.id</DbTable>
+<Data>p0.pkg_sn pkg_id,m.sn mat_id,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_mat_id</Data>
+<Order>pkg_mat_id</Order></DbDetails>
+<OnClick><if cond="%{pkg_mat_vLst[pkg_mat_id]}"><DbDetails><Where>pkg_mat_id='%{pkg_mat_vLst[pkg_mat_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.%{frmwndctrl}"/><submit function="onok"/></if></OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

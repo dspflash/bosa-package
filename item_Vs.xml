@@ -1,0 +1,14 @@
+﻿<GroupBox Name="GBDEDITitem" text="Search" toggle="1"><Ctrls>
+<GroupBox Name="GB_item_number" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_item_number" Size="120,20" Text="item_number" Align="Right"/>
+<TextBox Name="item_number" Size="110,20" Text="" Weight="110" ToolTip="ttp_item_number"></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Name="GB_item_name" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_item_name" Size="120,20" Text="item_name" Align="Right"/>
+<TextBox Name="item_name" Size="110,20" Text="" Weight="110" ToolTip="ttp_item_name"></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Name="GB_product_line" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_product_line" Size="120,20" Text="product_line" Align="Right"/>
+<TextBox Name="product_line" Size="110,20" Text="" Weight="110" ToolTip="ttp_product_line"></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

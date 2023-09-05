@@ -1,0 +1,42 @@
+﻿<GroupBox Name="GBDEDITtraceinfo"><Ctrls>
+<GroupBox Multiline="0" Name="GB_customer" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_customer" Text="customer"/>
+<TextBox Weight="170" Size="170,20" Name="customer" Text="" ToolTip="ttp_customer"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_vendor" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_vendor" Text="vendor"/>
+<TextBox Weight="170" Size="170,20" Name="vendor" Text="" ToolTip="ttp_vendor"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_quantity" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_quantity" Text="quantity"/>
+<TextBox Weight="170" Size="170,20" Name="quantity" Text="" ToolTip="ttp_quantity"/>
+</Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Multiline="0" Name="GB_itemname" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_itemname" Text="itemname"/>
+<TextBox Weight="170" Size="170,20" Name="itemname" Text="" ToolTip="ttp_itemname"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_itemnumber" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_itemnumber" Text="itemnumber"/>
+<TextBox Weight="170" Size="170,20" Name="itemnumber" Text="" ToolTip="ttp_itemnumber"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_lot" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_lot" Text="lot"/>
+<TextBox Weight="170" Size="170,20" Name="lot" Text="" ToolTip="ttp_lot"/>
+</Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Multiline="0" Name="GB_hole" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_hole" Text="hole"/>
+<TextBox Weight="170" Size="170,20" Name="hole" Text="" ToolTip="ttp_hole"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_itemrev" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_itemrev" Text="itemrev"/>
+<TextBox Weight="170" Size="170,20" Name="itemrev" Text="" ToolTip="ttp_itemrev"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_dt" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="60,20" Name="lb_dt" Text="dt"/>
+<TextBox Weight="170" Size="170,20" Name="dt" Text="" ToolTip="ttp_dt"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="60,20" Name="lb_id" Visible="false" Text="id" readonly="true"/>
+<TextBox overlap="pre" Weight="170" Size="170,20" Name="id" Visible="false" Text="" ToolTip="ttp_id" readonly="true"><OnEnChange><if cond="'%{id}'"><SetVisible name="inserttraceinfo" Visible="0"/><SetVisible name="modifytraceinfo" Visible="1"/><else/><SetVisible name="inserttraceinfo" Visible="1"/><SetVisible name="modifytraceinfo" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

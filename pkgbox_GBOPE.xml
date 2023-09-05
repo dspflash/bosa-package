@@ -1,0 +1,37 @@
+﻿<GroupBox Size="100,100" Name="GBOPEpkg_pkg" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" sqlpkinsert="pkg_pkg_id" Name="insertpkg_pkg" Text="create" ToolTip="ttp_createpkg_pkg">
+<OnClick>
+<DbDetails mode="insert" fcsm="1">
+<DbTable>bosa.pkg_pkg</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>pkg_id[pkg_id],pkg_x_id[pkg_id]</Data>
+<DataEx>created_dt,created_by,updated_dt,updated_by;now(),%{user_id},now(),%{user_id}</DataEx>
+<queryFormat>insert into %{table} %{data}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{insertpkg_pkg[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_pkgLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="1"><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_pkg_vLst"/></if></if></if></if>
+	</OnClick>
+	</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="modifypkg_pkg" Text="modify" ToolTip="ttp_modifypkg_pkg">
+<OnClick>
+<DbDetails mode="update" fcsm="1">
+<DbTable>bosa.pkg_pkg</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>pkg_id[pkg_id],pkg_x_id[pkg_id]</Data>
+<DataEx>updated_dt,updated_by;now(),%{user_id}</DataEx>
+<Where>pkg_pkg_id='%{pkg_pkg_id}'</Where>
+<queryFormat>update %{table} set %{data} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{modifypkg_pkg[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_pkgLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_pkg_vLst"/></if></if></if>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="resetpkg_pkg" Text="reset" ToolTip="ttp_resetpkg_pkg">
+<OnClick>
+<submit function="reset" next="GBDEDITpkg_pkg"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="gsearchpkg_pkg" visible="false" Text="Search" ToolTip="ttp_gsearchpkg_pkg">
+<OnClick>
+<search prefixand="0" inputed="1" next="pkg_pkgLst" prefixwhere="0" listed="0"/><submit namelist="search" function="search" next="GBDEDITpkg_pkg"/>
+	</OnClick>
+</Button><TAB/>
+</Ctrls></GroupBox>

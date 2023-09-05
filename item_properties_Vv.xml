@@ -1,0 +1,13 @@
+﻿<GroupBox Name="GBDVitem_properties" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="item_properties_vLst" ToolTip="ttp_item_properties_v" Size="700,450" OnLoad="init" Heading="property_id,120;property_value,100;created_by,60;creation_date,150;last_update_by,60;last_update_date,150;idx,100;" loadedclick="0">
+	<DbDetails >
+<Index>idx</Index>
+<DbTable>bosa.item_properties i left join bosa.item_property i0 on i.property_id=i0.property_id</DbTable>
+<Data>i0.prop_display_name property_id,i.property_value,i.created_by,i.creation_date,i.last_update_by,i.last_update_date,i.idx</Data>
+<Order>idx</Order></DbDetails>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_properties_ops.xml"/>
+<OnChanged>
+<assign name="pgcur_item_properties" expr="js(%{item_properties_vLst[currentpage]}+1)"/>
+<assign name="pgscb_item_properties" expr="js(%{item_properties_vLst[currentpage]}+1)" function="SetSel"/>
+</OnChanged></ListCtrl>
+</Ctrls></GroupBox>

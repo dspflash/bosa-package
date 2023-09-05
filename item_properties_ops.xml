@@ -1,0 +1,4 @@
+﻿<operator refresh="1" firstpage="1" prepage="1" nextpage="1">
+<op text="addone" mustselected="0"><submit next="$this.item_properties.GBDEDITitem_properties" function="reset"/><DbDetails><Where>item_id_m='%{item_id_m}' and org_id='%{org_id}'</Where></DbDetails><submit namelist="DbDetails" next="$this.item_properties.item_id_m"/></op>
+<op text="modify"><DbDetails><Where>item_id_m='%{item_id_m}' and org_id='%{org_id}'</Where></DbDetails><submit namelist="DbDetails" next="$this.item_properties.item_id_m"/><DbDetails><Where>idx='%{item_properties_vLst[idx]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.item_properties.item_propertiesLst"/></op>
+</operator>

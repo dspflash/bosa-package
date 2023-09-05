@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biztoolcfg jointbls="1" tableTxt="item" header2Link="" qryfmtOpCreate="" referLst="0" lines2Link="" qryfmtOpUpdate="" exdata4select="" onLoadInit="0" loadedClick="0" tableNm="item" LstTP="Lst">
+  <DataLstExtElmt><![CDATA[<MDX id="prop" datatype="string"><DbDetails><DbTable>item_properties i left join item_property i0 on i.property_id=i0.property_id</DbTable>where 	<Index>h_id </Index><MDX>item_id_m,propname,propvalue</MDX><Data>item_id_m,i0.prop_display_name propname,i.property_value propvalue</Data><Order/><Where>and item_status!=278</Where><queryFormat>select %{data} from %{dbtable} where (org_id,item_id_m) IN (select * from(SELECT i.org_id,i.item_id_m from item i limit %{StartRow},%{PgSize}) as orgitem)</queryFormat></DbDetails></MDX><DbDetails><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} where i.org_id='%{orgid}' %{where} limit %{StartRow},%{PgSize}</queryFormat></DbDetails>]]></DataLstExtElmt>
+  <DataLstExtAttr><![CDATA[ DataJoin="%{this}%{prop}" DataJoinKey="item_id_m"  Heading=""]]></DataLstExtAttr>
+  <operators4v><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_ops.xml"/>]]></operators4v>
+  <Ctrls>
+    <Ctrl Required="1" name="item_number"/>
+    <Ctrl Required="1" name="item_name"/>
+    <Ctrl noquery="1" noused="1" name="item_specification"/>
+    <Ctrl noquery="1" noused="1" name="item_description"/>
+    <Ctrl name="product_line"/>
+    <Ctrl ctrldbdata="category,category_id" noquery="1" ctrldbdatarel="category_id" noused="1" ctrldbname="bosa." xTp="ComboBox" name="item_category" ctrltype="ComboBox" ctrldbtable="category">
+      <extattr><![CDATA[onload="init"]]></extattr>
+      <addon><![CDATA[<MagicCtrl Name="refresh%{colNm}" Link="tip:刷新" images=",data/refresh.png" button="type:0" Size="20,20"><OnClick><submit next="%{colNm}"/></OnClick></MagicCtrl>\r\n]]></addon>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="image_file"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" ctrldbdatarel="option_line_id" noused="1" tabName="BasicInfo" ctrldbwhere="option_header_id=84" ctrldbname="bosa." xTp="ComboBox" name="item_type" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" Required="1" ctrldbdatarel="uom_id" noused="1" ctrldbname="bosa." xTp="ComboBox" name="uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init" selectedIndex="0"]]></extattr>
+      <addon><![CDATA[<MagicCtrl Link="tip:刷新" images=",data/refresh.png" button="type:0" Size="20,20" Name="refresh%{colNm}"><OnClick><submit next="%{colNm}"/></OnClick></MagicCtrl>\r\n]]></addon>
+    </Ctrl>
+    <Ctrl ctrldbdata="1~100" noquery="1" noused="1" xTp="ComboBox" name="product_line_percentage" ctrltype="ComboBox"/>
+    <Ctrl noused="1" name="make_buy">
+      <extattr><![CDATA[selectedIndex="1"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="pre_processing_lt"/>
+    <Ctrl noquery="1" noused="1" name="post_processing_lt"/>
+    <Ctrl noquery="1" noused="1" name="processing_lt"/>
+    <Ctrl noquery="1" noused="1" name="cumulative_mfg_lt"/>
+    <Ctrl noquery="1" noused="1" name="cumulative_total_lt"/>
+    <Ctrl noquery="1" noused="1" name="lt_lot_size"/>
+    <Ctrl noquery="1" noused="1" ctrlsize="170,20" name="long_description"/>
+    <Ctrl noused="1" tabName="Inventory" name="inventory_item_cb"/>
+    <Ctrl noquery="1" noused="1" name="stockable_cb"/>
+    <Ctrl noquery="1" noused="1" name="transactable_cb"/>
+    <Ctrl noquery="1" noused="1" name="reservable_cb"/>
+    <Ctrl noquery="1" noused="1" name="cycle_count_enabled_cb"/>
+    <Ctrl noquery="1" noused="1" name="equipment_cb"/>
+    <Ctrl noquery="1" noused="1" name="electronic_format_cb"/>
+    <Ctrl noquery="1" noused="1" name="onhand_with_rev_cb"/>
+    <Ctrl ctrldbdata="revision_name,inv_item_revision_id" noquery="1" ctrldbdatarel="inv_item_revision_id" noused="1" ctrldbwhere="item_id_m='%{item_id_m}' and org_id='%{orgid}'" ctrldbname="mes_trace." xTp="ComboBox" name="item_rev_number" ctrltype="ComboBox" ctrldbtable="inv_item_revision"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=89" ctrldbname="mes_trace." xTp="ComboBox" name="locator_control" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="kit_cb"/>
+    <Ctrl ctrldbdata="Item Level|Organization Level|Global Level" noquery="1" noused="1" xTp="ComboBox" name="lot_uniqueness" ctrltype="ComboBox"/>
+    <Ctrl ctrldbdata="Pre Defined|At Receipt|At Shipment" noquery="1" noused="1" xTp="ComboBox" name="lot_generation" ctrltype="ComboBox"/>
+    <Ctrl noquery="1" noused="1" name="lot_prefix"/>
+    <Ctrl noquery="1" noused="1" name="lot_starting_number"/>
+    <Ctrl ctrldbdata="Item Level|Organization Level|Global Level" noquery="1" noused="1" xTp="ComboBox" name="serial_uniqueness" ctrltype="ComboBox"/>
+    <Ctrl ctrldbdata="Pre Defined|At Receipt|At Shipment" noquery="1" noused="1" xTp="ComboBox" name="serial_generation" ctrltype="ComboBox"/>
+    <Ctrl noquery="1" noused="1" name="serial_prefix"/>
+    <Ctrl noquery="1" noused="1" name="serial_starting_number"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=113" ctrldbname="mes_trace." xTp="ComboBox" name="weight_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="weight"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=112" ctrldbname="mes_trace." xTp="ComboBox" name="volume_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="volume"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=111" ctrldbname="mes_trace." xTp="ComboBox" name="dimension_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="length"/>
+    <Ctrl noquery="1" noused="1" name="width"/>
+    <Ctrl noquery="1" noused="1" name="height"/>
+    <Ctrl noused="1" tabName="Sales" name="customer_ordered_cb"/>
+    <Ctrl noused="1" name="internal_ordered_cb"/>
+    <Ctrl noquery="1" noused="1" name="atp"/>
+    <Ctrl noquery="1" noused="1" name="shippable_cb"/>
+    <Ctrl noquery="1" noused="1" name="returnable_cb"/>
+    <Ctrl noquery="1" noused="1" name="picking_rule"/>
+    <Ctrl noquery="1" noused="1" name="sales_ac_id"/>
+    <Ctrl noused="1" tabName="Purchasing" name="purchased_cb"/>
+    <Ctrl noquery="1" noused="1" name="use_asl_cb"/>
+    <Ctrl ctrldbdata="sourcing_rule,po_sourcing_rule_header_id" noquery="1" ctrldbdatarel="po_sourcing_rule_header_id" noused="1" ctrldbname="mes_trace." xTp="ComboBox" name="sourcing_rule_id" ctrltype="ComboBox" ctrldbtable="po_sourcing_rule_header">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="customer_name,ar_customer_id" noquery="1" ctrldbdatarel="ar_customer_id" noused="1" ctrldbname="bosa." name="default_buyer" ctrldbtable="ar_customer">
+      <addon><![CDATA[<MagicCtrl Name="pick%{colNm}" Link="tip:Pick" images=",data/search.png" button="type:0" Size="20,20"><OnClick><assign name="$parent.ar_customer_pick.frmwndctrl" expr="item.default_buyer"/><DbDetails><Where></Where></DbDetails><submit namelist="DbDetails" next="$parent.ar_customer_pick.ar_customer_vLst"/></OnClick></MagicCtrl>\r\n]]></addon>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="list_price"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=126" ctrldbname="mes_trace." xTp="ComboBox" name="receipt_routing" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="subinventory,subinventory_id" noquery="1" ctrldbdatarel="subinventory_id" noused="1" ctrldbwhere="org_id='%{orgid}' and status" ctrldbname="mes_trace." xTp="ComboBox" name="receipt_sub_inventory" ctrltype="ComboBox" ctrldbtable="subinventory">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="over_receipt_percentage"/>
+    <Ctrl noquery="1" noused="1" name="over_receipt_action"/>
+    <Ctrl noquery="1" noused="1" name="receipt_days_early"/>
+    <Ctrl noquery="1" noused="1" name="receipt_days_late"/>
+    <Ctrl noquery="1" noused="1" name="receipt_day_action"/>
+    <Ctrl noquery="1" noused="1" name="bom_enabled_cb"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=222" ctrldbname="mes_trace." xTp="ComboBox" name="bom_type" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="build_in_wip_cb"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=135" ctrldbname="mes_trace." xTp="ComboBox" name="wip_supply_type" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="subinventory,subinventory_id" noquery="1" ctrldbdatarel="subinventory_id" noused="1" ctrldbwhere="org_id='%{orgid}' and status" ctrldbname="mes_trace." xTp="ComboBox" name="wip_supply_subinventory" ctrltype="ComboBox" ctrldbtable="subinventory">
+      <extelmt><![CDATA[<OnSelEndOk><submit next="wip_supply_locator"/></OnSelEndOk>]]></extelmt>
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="locator,locator_id" noquery="1" ctrldbdatarel="locator_id" noused="1" ctrldbwhere="subinventory_id='%{wip_supply_subinventory[subinventory_id]}'" ctrldbname="mes_trace." xTp="ComboBox" name="wip_supply_locator" ctrltype="ComboBox" ctrldbtable="locator"/>
+    <Ctrl noquery="1" noused="1" name="costing_enabled_cb"/>
+    <Ctrl noquery="1" noused="1" name="inventory_asset_cb"/>
+    <Ctrl noquery="1" noused="1" name="cogs_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="deffered_cogs_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="default_cost_group"/>
+    <Ctrl noquery="1" noused="1" tabName="Planning" name="allow_negative_balance_cb"/>
+    <Ctrl noquery="1" noused="1" name="planner"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=170" ctrldbname="mes_trace." xTp="ComboBox" name="planning_method" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="forecast_method"/>
+    <Ctrl noquery="1" noused="1" name="forecast_control"/>
+    <Ctrl noquery="1" noused="1" name="fix_order_quantity"/>
+    <Ctrl noquery="1" noused="1" name="fix_days_supply"/>
+    <Ctrl noquery="1" noused="1" name="fix_lot_multiplier"/>
+    <Ctrl noquery="1" noused="1" name="minimum_order_quantity"/>
+    <Ctrl noquery="1" noused="1" name="maximum_order_quantity"/>
+    <Ctrl noquery="1" noused="1" name="demand_timefence"/>
+    <Ctrl noquery="1" noused="1" name="planning_timefence"/>
+    <Ctrl noquery="1" noused="1" name="release_timefence"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=178" ctrldbname="mes_trace." xTp="ComboBox" name="rounding_option" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="minmax_min_quantity"/>
+    <Ctrl noquery="1" noused="1" name="minmax_max_quantity"/>
+    <Ctrl noquery="1" noused="1" name="minmax_multibin_number"/>
+    <Ctrl noquery="1" noused="1" name="minmax_multibin_size"/>
+    <Ctrl noquery="1" noused="1" tabName="Control" name="saftey_stock_quantity"/>
+    <Ctrl noquery="1" noused="1" name="saftey_stock_days"/>
+    <Ctrl noquery="1" noused="1" name="saftey_stock_percentage"/>
+    <Ctrl ctrldbdata="Asset Item|Asset Activity|Asset Component" noquery="1" noused="1" xTp="ComboBox" name="am_asset_type" ctrltype="ComboBox"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=226" ctrldbname="mes_trace." xTp="ComboBox" name="am_activity_cause" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=225" ctrldbname="mes_trace." xTp="ComboBox" name="am_activity_type" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=227" ctrldbname="mes_trace." xTp="ComboBox" name="am_activity_source" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="service_request_cb"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=242" ctrldbname="mes_trace." xTp="ComboBox" name="billing_type" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="Warenty|Extended Warenty|Usage|Service|Subscription" noquery="1" noused="1" xTp="ComboBox" name="contract_item_type" ctrltype="ComboBox"/>
+    <Ctrl noquery="1" noused="1" name="duration"/>
+    <Ctrl ctrldbdata="uom_name,uom_id" noquery="1" ctrldbdatarel="uom_id" noused="1" ctrldbwhere="class=117" ctrldbname="mes_trace." xTp="ComboBox" name="duration_uom_id" ctrltype="ComboBox" ctrldbtable="uom">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" tabName="Financial" name="invoiceable_cb">
+      <extattr><![CDATA[checked="true"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=127" ctrldbname="mes_trace." xTp="ComboBox" name="invoice_matching" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=181" ctrldbname="mes_trace." xTp="ComboBox" name="ip_tax_class" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" noquery="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=181" ctrldbname="mes_trace." xTp="ComboBox" name="op_tax_class" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init"]]></extattr>
+    </Ctrl>
+    <Ctrl noquery="1" noused="1" name="ap_payment_term"/>
+    <Ctrl noquery="1" noused="1" name="ar_payment_term"/>
+    <Ctrl noquery="1" noused="1" name="rev_enabled_cb"/>
+    <Ctrl noquery="1" noused="1" name="discount_class"/>
+    <Ctrl noquery="1" noused="1" name="demand_class"/>
+    <Ctrl insertparam="'%{orgid}'" noquery="1" noUpdate="1" noused="1" name="org_id" ctrlhide="1"/>
+    <Ctrl noquery="1" noused="1" name="origination_type"/>
+    <Ctrl noquery="1" noused="1" name="origination_date"/>
+    <Ctrl noquery="1" noused="1" name="material_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="material_oh_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="overhead_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="resource_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="osp_ac_id"/>
+    <Ctrl noquery="1" noused="1" name="expense_ac_id"/>
+    <Ctrl ctrldbdata="option_line_value,option_line_id" Required="1" ctrldbdatarel="option_line_id" noused="1" ctrldbwhere="option_header_id=123" ctrldbname="bosa." xTp="ComboBox" name="item_status" ctrltype="ComboBox" ctrldbtable="option_line">
+      <extattr><![CDATA[onload="init" selectedIndex="0"]]></extattr>
+    </Ctrl>
+    <Ctrl insertparam="'%{operaid}'" noquery="1" noUpdate="1" name="created_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" noUpdate="1" name="creation_date" ctrlhide="1"/>
+    <Ctrl insertparam="'%{operaid}'" noquery="1" updateparam="'%{operaid}'" name="last_update_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" updateparam="now()" name="last_update_date" ctrlhide="1"/>
+    <Ctrl noquery="1" noUpdate="1" noInsert="1" name="item_id_m" ctrlhide="1">
+      <extelmt><![CDATA[<OnEnChange><submit next="item_rev_number"/></OnEnChange>]]></extelmt>
+    </Ctrl>
+    <Ctrl noquery="1" noUpdate="1" noInsert="1" nomodify="1" name="item_id" ctrlhide="1" noInAndUp="1">
+      <extelmt><![CDATA[<OnEnChange><if cond="'%{item_id}'"><if cond="%{item_id}!='%{item_id_m}'"><DbDetails><Queryformat>update item set item_id_m=%{item_id} where item_id=%{item_id}</Queryformat></DbDetails><submit namelist="DbDetails"/></if></if></OnEnChange>]]></extelmt>
+    </Ctrl>
+  </Ctrls>
+</biztoolcfg>

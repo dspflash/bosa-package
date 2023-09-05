@@ -1,0 +1,12 @@
+﻿<GroupBox Name="GBDVpkg" cols="xs12 sm12 md12 lg12" visible="0"><Ctrls>
+<ListCtrl Name="pkgLst" ToolTip="ttp_pkg" Size="70,20" visible="0" loadedclick="1">
+	<DbDetails fcsm="1">
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg</DbTable>
+<Data>pkg_sn,pkg_spec,remark,created_dt,created_by,updated_dt,updated_by,pkg_id</Data>
+<Order>pkg_id</Order></DbDetails>
+<OnClick><assign name="pkg_spec[specification_id]" expr="%{pkgLst[pkg_spec]}" function="SetSel"/>
+<if cond="'%{pkg_id}'"><SetVisible name="insertpkg" Visible="0"/><SetVisible name="modifypkg" Visible="1"/></if>
+</OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>

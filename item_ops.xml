@@ -1,0 +1,9 @@
+﻿<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="modify"><DbDetails><Where>item_id='%{item_vLst[item_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.item.itemLst"/><assign name="$this.item.frmwndctrl" expr="%{this}"/></op>
+<op text="property"><assign name="$this.item_properties_v.item_id_m" expr="%{item_vLst[item_id_m]}"/><assign name="$this.item_properties_v.org_id" expr="%{item_vLst[org_id]}"/><DbDetails><Where>item_id_m='%{item_id_m}' and org_id='%{org_id}'</Where></DbDetails><submit namelist="DbDetails" next="$this.item_properties_v.item_properties_vLst"/></op>
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>bosa.item</DbTable>
+<Where>item_id='%{item_vLst[item_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>

@@ -1,0 +1,10 @@
+﻿<GroupBox Name="GBDVitem" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Size="700,450" loadedclick="0" Name="itemLst" ToolTip="ttp_item" DataJoin="%{this}%{prop}" DataJoinKey="item_id_m" Heading="">
+	<DbDetails fcsm="1">
+<Index>item_id</Index>
+<DbTable>bosa.item</DbTable>
+<Data>item_number,item_name,product_line,created_by,creation_date,last_update_by,last_update_date,item_id_m,item_id</Data>
+<Order>item_id</Order></DbDetails>%{}
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_ops.xml"/>
+</ListCtrl>
+</Ctrls></GroupBox>

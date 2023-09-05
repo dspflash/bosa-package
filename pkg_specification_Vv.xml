@@ -1,0 +1,20 @@
+﻿<GroupBox Name="GBDVpkg_specification" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_specification_vLst" ToolTip="ttp_pkg_specification_v" Size="700,450" OnLoad="init" Heading="specification_name,250;pkg_tp,120;max_units,75;bc_label,250;specification,125;structure,580;created_by,60;creation_date,150;last_update_by,60;last_update_date,150;specification_id,60;" loadedclick="0">
+	<DbDetails >
+<Index>specification_id</Index>
+<DbTable>bosa.pkg_specification p</DbTable>
+<Data>p.specification_name,p.pkg_tp,p.max_units,p.bc_label,p.specification,p.structure,p.created_by,p.creation_date,p.last_update_by,p.last_update_date,p.specification_id</Data>
+<Order>specification_id</Order></DbDetails>
+<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="modify"><DbDetails><Where>specification_id='%{pkg_specification_vLst[specification_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.pkg_specification.pkg_specificationLst"/><assign name="$this.pkg_specification.frmwndctrl" expr="%{this}"/></op>
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>bosa.pkg_specification</DbTable>
+<Where>specification_id='%{pkg_specification_vLst[specification_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>
+<OnChanged>
+<assign name="pgcur_pkg_specification" expr="js(%{pkg_specification_vLst[currentpage]}+1)"/>
+<assign name="pgscb_pkg_specification" expr="js(%{pkg_specification_vLst[currentpage]}+1)" function="SetSel"/>
+</OnChanged></ListCtrl>
+</Ctrls></GroupBox>

@@ -1,0 +1,69 @@
+﻿<GroupBox Name="GBDEDITcarton_print" printborder="0" font-size="10"><Ctrls>
+<Label Align="Right" Text="" Name="lb_x_adjust_left" Size="10,20"/>
+<GroupBox Name="GBDEDITcarton_print_" printborder="0"><Ctrls>
+<!--GroupBox Multiline="0" Name="GB_lot_number_id" printborder="0"><Ctrls>
+<Label Align="Right" Text="" Name="lb_x" Size="20,20"/>
+<Label Align="Center" Text="环境关联物资管制标签(无卤)" Name="lb_org_name" Size="230,20"/><BR/>
+<Label Align="Right" Text="" Name="lb_x" Size="30,20"/>
+<Label Align="Center" Text="新进材料专用标签" Name="lb_org_name" Size="210,20"/>
+</Ctrls></GroupBox><BR/-->
+<GroupBox Multiline="0" Name="GB_cust_no" printborder="1"><Ctrls>
+<Label Align="Left" Text="Customer code：" Name="lb_mat_no" readonly="true" Size="100,20"/> 
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_cust_no_" printborder="1"><Ctrls>
+<TextBox Text="CIN0141" Align="Center" ToolTip="ttp_mat_no" Name="mat_no" readonly="true" Size="200,20">
+</TextBox>
+</Ctrls></GroupBox>
+<BR/>
+<GroupBox Multiline="0" Name="GB_mat_name" printborder="1"><Ctrls>
+<Label Align="Left" Text="Product NO：" Name="lb_mat_name" readonly="true" Size="100,20"/> 
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_mat_name_" printborder="1"><Ctrls>
+<TextBox Align="Center" Text="912-030000-034" ToolTip="ttp_mat_name" Name="mat_name" readonly="true" Size="200,20"></TextBox>
+</Ctrls></GroupBox>
+<BR/>
+<GroupBox Multiline="0" Name="GB_Specification" printborder="1"><Ctrls>
+<Label Align="Left" Text="Specification：" Name="lb_Specification" readonly="true" Size="100,20"/> 
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_Specification_" printborder="1"><Ctrls>
+<TextBox Align="Center" Text="GPON BOSA SC-APC SWBO" ToolTip="ttp_mat_name" Name="Specification" readonly="true" Size="200,20"></TextBox>
+</Ctrls></GroupBox>
+<BR/>
+<GroupBox Multiline="0" Name="GB_SIZE" printborder="1"><Ctrls>
+<Label Align="Left" Text="SIZE：" Name="lb_SIZE" readonly="true" Size="100,20"/> 
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_SIZE_" printborder="1"><Ctrls>
+<TextBox Align="Right" Text="52*33*38" ToolTip="ttp_mat_name" Name="SIZE" readonly="true" Size="120,20"></TextBox>
+<Label Align="Left" Text="CM" Name="lb_size_" Size="80,20"/>
+</Ctrls></GroupBox>
+<BR/>
+<GroupBox Multiline="0" Name="GB_Quantity" printborder="1"><Ctrls>
+<Label Align="Left" Text="Quantity：" Name="lb_Quantity" Size="100,20"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_Quantity_" printborder="1"><Ctrls>
+<TextBox Align="Right" Text="" ToolTip="ttp_cab_nums" Name="Quantity" Size="120,20"></TextBox>
+<Label Align="Left" Text="PCS" Name="lb_quantity_" Size="80,20"/>
+</Ctrls></GroupBox>
+<BR/>
+<GroupBox Multiline="0" Name="GB_item_tpx" printborder="1"><Ctrls>
+<GroupBox Multiline="0" Name="GB_cab_no" printborder="1"><Ctrls>
+<Label Align="Left" Text="Carton NO：" Name="lb_cab_no" Size="100,20"/>
+</Ctrls></GroupBox>
+<TextBox Align="Right" Text="" ToolTip="ttp_cab_no" Name="cab_no" Size="90,20" readonly="0" Number="1">
+</TextBox>
+<Label Align="" Text="/" Name="lb_cab_no_" Size="20,20"/>
+<TextBox Text="" ToolTip="ttp_cabs" Name="cabs_" Size="90,20" Number="1"/>
+</Ctrls></GroupBox>
+
+<BR/>
+<GroupBox Multiline="0" Name="GB_Weight" printborder="1"><Ctrls>
+<GroupBox Multiline="0" Name="GB_Weight" printborder="1"><Ctrls>
+<Label Align="Left" Text="Weight：" Name="lb_Weight" Size="100,20"/>
+</Ctrls></GroupBox>
+<TextBox Align="Right" Text="" Name="Weight" ToolTip="" Size="120,20"/>
+<Label Align="Left" Text="KG" Name="lb_weight_" Size="80,20"/>
+</Ctrls></GroupBox>
+
+
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

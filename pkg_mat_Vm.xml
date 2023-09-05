@@ -1,0 +1,56 @@
+﻿<WndTap Name="pkg_mat_v" Text="pkg_mat_v">
+<WndTaps>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_Ve.xml" popup="1"/>
+</WndTaps>
+<var name="searchtmpl"><pkg_id format="p0.pkg_sn='%{opvalue}'"/><mat_id format="p.mat_id='%{opvalue}'"/><created_dt format="(p.created_dt between '%{created_dt[datetime]}' and '%{created_dt[datetime2]}')"/><created_by format="(p.created_by like '%%{opvalue}%')"/><updated_dt format="(p.updated_dt between '%{updated_dt[datetime]}' and '%{updated_dt[datetime2]}')"/><updated_by format="(p.updated_by like '%%{opvalue}%')"/><pkg_mat_id format="p.pkg_mat_id='%{opvalue}'"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\pkg_mat.xml"/>
+<Ctrls><GroupBox  Name="GBpkg_mat" id="pkg_mat" Text="pkg_mat" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_Vsm.xml"/>
+<GroupBox Multiline="0" Name="GB_date_delivery" printborder="0"><Ctrls>
+<Label Align="Left" Text="发货时间：" Name="lb_date_delivery" Size="80,20"/>
+<DateTime ToolTip="ttp_date_delivery" Name="date_delivery" Size="100,20" Format="yyyy-MM-dd"></DateTime>
+</Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVpkg_mat" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetpkg_mat" Name="resetpkg_mat" Size="50,20" Weight="50">
+	<OnClick>
+		<submit next="GBDEDITpkg_mat" function="reset"/></OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchpkg_mat" Name="gsearchpkg_mat" Size="50,20" Weight="50">
+	<OnClick><if cond="'%{pkg_id}'">
+		<search next="pkg_statistic_vLst" listed="0" prefixwhere="0" prefixand="0" inputed="1">%{searchtmpl}</search>
+		<submit next="GBDEDITpkg_mat" namelist="search" function="search"/>
+		<search next="pkg_mat_vLst" listed="0" prefixwhere="0" prefixand="0" inputed="1">%{searchtmpl}</search>
+		<submit next="GBDEDITpkg_mat" namelist="search" function="search"/>
+		<search next="records_pkg_mat" listed="0" prefixwhere="1" prefixand="0" inputed="1">%{searchtmpl}</search>
+		<submit next="GBDEDITpkg_mat" namelist="search" function="search"/><else/><notify expr="%{lb_pkg_id}不能为空"/></if>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<GroupBox cols="xs12 sm6 md4"><Ctrls>
+	<TextBox Name="excelfn" Size="300,20" tooltip="excelfn，Excel文件名" weight="1" Text=""/>
+	<Button Name="Browse" Size="50,20" Text="浏览" icon="xi-folder2-open">
+		<OnClick><assign name="excelfn" expr="browsefile:,filter=Excel (*.xls)|*.xls|Excel (*.xlsx)|*.xlsx|Execl Files (*.xls;*.xlsx)|*.xls;*.xlsx|CSV Files (*.csv)|*.csv|TEXT Files (*.txt)|*.txt||" function=""/></OnClick></Button>
+	</Ctrls></GroupBox>
+<GroupBox cols="xs12 sm6 md4"><Ctrls>
+	<MagicCtrl Name="xExcel" fadeout="min:0;" link="tip:read excel to list" text="Interface (xExcel)" Size="100,20" OnLoad="init">
+		<interface id="xExcelA" type="IBizInterface" codebase="xexcel.dll" dir="layout/ucin/" classid="6BACF5C9-AF7A-481E-AE7A-B81378D097BF" version="2.0"/>
+		<OnClick>
+		<magicdata x="" function="read" filename="%{excelfn}" TL="N2" BR="R6"></magicdata>
+		<submit next="xexcel" namelist="magicdata" function="6BACF5C9-AF7A-481E-AE7A-B81378D097BF"/></OnClick>
+		<OnEvent_6BACF5C9-AF7A-481E-AE7A-B81378D097BF_1>
+		<info next="tst" expr="%{xExcel[6BACF5C9-AF7A-481E-AE7A-B81378D097BF.statmsg]}"/>
+		<if cond="0==%{xExcel[6BACF5C9-AF7A-481E-AE7A-B81378D097BF.stat]}">
+		<ExchangeData name="pkg_mat_vLstx"/>
+		<submit next="xexcel" dataSect="6BACF5C9-AF7A-481E-AE7A-B81378D097BF" namelist="ExchangeData" function="ExchangeData"/></if>
+			</OnEvent_6BACF5C9-AF7A-481E-AE7A-B81378D097BF_1>
+		</MagicCtrl>
+	<Button Name="ExcelWrite" Text="ExcelWrite" Size="80,20" tooltip="write List to xexcel，将ExcelList 表中数据写入文本框 excelfn 指定的文件中">
+		<OnClick>
+			<ExchangeData name="xExcel" DataSect="6BACF5C9-AF7A-481E-AE7A-B81378D097BF" function="write" OptionMode="1" remark="read default0,write default2;0,mustexist;1,createifnotexist;2truncate if exist" filename="%{excelfn}" TL="A2" DataOffset="1" autosave="1"/>
+			<submit next="pkg_statistic_vLst" namelist="ExchangeData" function="ExchangeData"/>
+			<ExchangeData name="xExcel" DataSect="6BACF5C9-AF7A-481E-AE7A-B81378D097BF" function="write" OptionMode="1" remark="read default0,write default2;0,mustexist;1,createifnotexist;2truncate if exist" filename="%{excelfn}" TL="N2" autosave="1"/>
+			<submit delay="1000" next="pkg_mat_vLst" namelist="ExchangeData" function="ExchangeData"/>
+		</OnClick></Button>
+	</Ctrls></GroupBox>
+<BR AutoHeight="1"/><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_Vvm.xml"/>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

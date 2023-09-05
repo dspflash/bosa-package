@@ -1,0 +1,9 @@
+﻿<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="addone" mustselected="0"><if cond="!%{pkg_id}"><alert expr="pkg_id is Empty!"/><else/><submit next="$parent.pkgbox.GBDEDITpkg_pkg" function="reset"/><DbDetails ><where>pkg_id=%{pkg_id}</where></DbDetails><submit next="$parent.pkgbox.pkg_id" namelist="DbDetails"/><submit next="$parent.pkgbox.pkg_maxunits" namelist="DbDetails"/><submit next="$parent.pkgbox.pkg_units" namelist="DbDetails"/><assign name="$parent.pkgbox.frmwndctrl" expr="%{this}"/></if></op>
+<!--op text="modify"><DbDetails><Where>pkg_pkg_id='%{pkg_pkg_vLst[pkg_pkg_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.pkgbox.pkg_pkgLst"/><assign name="$this.pkgbox.frmwndctrl" expr="%{this}"/></op-->
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>bosa.pkg_pkg</DbTable>
+<Where>pkg_pkg_id='%{pkg_pkg_vLst[pkg_pkg_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>

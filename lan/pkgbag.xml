@@ -1,0 +1,35 @@
+﻿<Language name="pkg_pkg">
+<Lang name="pkg_pkg" value="装袋入箱"/>
+<Lang name="pkgbag" value="装袋入箱"/>
+<Lang name="TabEditpkg_pkg" value="pkg_pkg Edit"/>
+<Lang name="TabViewpkg_pkg" value="pkg_pkg View"/>
+<Lang name="pkg_x_id" value="包装袋"/>
+<Lang name="ttp_pkg_x_id" value=""/>
+<Lang name="pkg_id" value="包装箱"/>
+<Lang name="ttp_pkg_id" value=""/>
+<Lang name="created_dt" value=""/>
+<Lang name="ttp_created_dt" value=""/>
+<Lang name="created_by" value=""/>
+<Lang name="ttp_created_by" value=""/>
+<Lang name="updated_dt" value=""/>
+<Lang name="ttp_updated_dt" value=""/>
+<Lang name="updated_by" value=""/>
+<Lang name="ttp_updated_by" value=""/>
+<Lang name="pkg_pkg_id" value=""/>
+<Lang name="ttp_pkg_pkg_id" value=""/>
+<Lang name="ttp_operationpkg_pkg" value=""/>
+<Lang name="ttp_createpkg_pkg" value=""/>
+<Lang name="ttp_modifypkg_pkg" value=""/>
+<Lang name="ttp_resetpkg_pkg" value=""/>
+<Lang name="ttp_deletepkg_pkg" value=""/>
+<Lang name="ttp_refreshpkg_pkg" value=""/>
+<Lang name="operation" value=""/>
+<Lang name="create" value=""/>
+<Lang name="modify" value=""/>
+<Lang name="reset" value=""/>
+<Lang name="delete" value=""/>
+<Lang name="refresh" value=""/>
+<Lang name="firstpage" value=""/>
+<Lang name="prepage" value=""/>
+<Lang name="nextpage" value=""/>
+</Language>

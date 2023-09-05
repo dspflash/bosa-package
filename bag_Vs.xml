@@ -1,0 +1,16 @@
+﻿<GroupBox Name="GBDEDITpkg" text="Search" toggle="1"><Ctrls>
+<GroupBox Name="GB_pkg_sn" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_pkg_sn" Size="120,20" Text="pkg_sn" Align="Right"/>
+<TextBox Name="pkg_sn" Size="110,20" Text="" Weight="110" ToolTip="ttp_pkg_sn"></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Name="GB_pkg_spec" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_pkg_spec" Size="120,20" Text="pkg_spec" Align="Right" onload="init"/>
+<ComboBox Name="pkg_spec" Size="90,100" Text="" Weight="90"  ToolTip="ttp_pkg_spec" onload="init">
+	<DbDetails>
+<Index>specification_id</Index>
+<DbTable>bosa.pkg_specification</DbTable>
+<Data>specification_name,specification_id</Data>
+<Where>pkg_tp='bag'</Where>
+<queryFormat></queryFormat></DbDetails></ComboBox>
+<MagicCtrl Link="tip:刷新" images=",data/refresh.png" button="type:0" Size="20,20" Name="refreshpkg_spec"><OnClick><submit next="pkg_spec"/></OnClick></MagicCtrl>\r\n</Ctrls></GroupBox>
+</Ctrls></GroupBox>

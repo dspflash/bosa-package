@@ -1,0 +1,29 @@
+﻿<WndTap Name="item_pick" Text="item_Pick">
+<var name="searchtmpl"><item_number format="(i.item_number like '%%{opvalue}%')"/><item_name format="(i.item_name like '%%{opvalue}%')"/><product_line format="(i.product_line like '%%{opvalue}%')"/><created_by format="(i.created_by like '%%{opvalue}%')"/><creation_date format="(i.creation_date between '%{creation_date[datetime]}' and '%{creation_date[datetime2]}')"/><last_update_by format="(i.last_update_by like '%%{opvalue}%')"/><last_update_date format="(i.last_update_date between '%{last_update_date[datetime]}' and '%{last_update_date[datetime2]}')"/><item_id_m format="(i.item_id_m like '%%{opvalue}%')"/><item_id format="(i.item_id like '%%{opvalue}%')"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\item.xml"/>
+<Ctrls><GroupBox  Name="GBitem" id="item" Text="item" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_Vs.xml"/>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVitem" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetitem" Name="resetitem" Size="50,20">
+	<OnClick>
+		<submit next="GBDEDITitem" function="reset"/>
+	</OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchitem" Name="gsearchitem" Size="50,20">
+	<OnClick>
+		<search next="item_vLst" listed="0" prefixwhere="0" prefixand="1" inputed="1">%{searchtmpl}</search><submit next="GBDEDITitem" namelist="search" function="search"/>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Name="GBDVitem" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="item_vLst" ToolTip="ttp_item_v" Size="700,450" DataJoin="%{this}%{prop}" DataJoinKey="item_id_m"  Heading="" loadedclick="0">
+	<DbDetails >
+<Index>item_id</Index>
+<DbTable>bosa.item i</DbTable>
+<Data>i.item_number,i.item_name,i.product_line,i.created_by,i.creation_date,i.last_update_by,i.last_update_date,i.item_id_m,i.item_id</Data>
+<Order>item_id</Order></DbDetails>
+<MDX id="prop" datatype="string"><DbDetails><DbTable>item_properties i left join item_property i0 on i.property_id=i0.property_id</DbTable>where 	<Index>h_id </Index><MDX>item_id_m,propname,propvalue</MDX><Data>item_id_m,i0.prop_display_name propname,i.property_value propvalue</Data><Order/><Where>and item_status!=278</Where><queryFormat>select %{data} from %{dbtable} where (org_id,item_id_m) IN (select * from(SELECT i.org_id,i.item_id_m from item i limit %{StartRow},%{PgSize}) as orgitem)</queryFormat></DbDetails></MDX><DbDetails><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} where i.org_id='%{orgid}' %{where} limit %{StartRow},%{PgSize}</queryFormat></DbDetails>
+<OnClick><if cond="%{item_vLst[item_id]}"><DbDetails><Where>item_id='%{item_vLst[item_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.%{frmwndctrl}"/><submit function="onok"/></if></OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

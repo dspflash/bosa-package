@@ -1,0 +1,17 @@
+﻿<GroupBox Size="100,100" Name="GBOPVpkg_specification" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" Name="deletepkg_specification" Text="delete" ToolTip="ttp_deletepkg_specification">
+<OnClick>
+	<DbDetails fcsm="1">
+<DbTable>bosa.pkg_specification</DbTable>
+<Where>specification_id='%{pkg_specificationLst[specification_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit function="click" next="searchpkg_specification"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="searchpkg_specification" Text="refresh" ToolTip="ttp_refreshpkg_specification">
+<OnClick><submit next="pkg_specificationLst"/>	</OnClick>
+</Button>
+<TAB/><TAB/><Button OnClick="(pkg_specificationLst)GetPage(First)" Size="50,20" Name="FPpkg_specificationLst" Text="firstpage"/>
+<TAB/><Button Weight="50" OnClick="(pkg_specificationLst)GetPage(Pre)" Size="50,20" Name="PREpkg_specificationLst" Text="prepage"/>
+<TAB/><Button Weight="50" OnClick="(pkg_specificationLst)GetPage(Next)" Size="50,20" Name="NPpkg_specificationLst" Text="nextpage"/>
+</Ctrls></GroupBox>

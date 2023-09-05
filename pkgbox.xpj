@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biztoolcfg jointbls="1" tableTxt="pkg_pkg" header2Link="pkg_id" qryfmtOpCreate="" referLst="0" lines2Link="" qryfmtOpUpdate="" exdata4select="" onLoadInit="0" loadedClick="0" tableNm="pkg_pkg" LstTP="Lst">
+  <DataLstExtAttr><![CDATA[ onload="0"]]></DataLstExtAttr>
+  <operators4v><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkgbox_ops.xml"/>]]></operators4v>
+  <addons><![CDATA[<BR AutoHeight="1"/><Label Size="100,20"/><CheckBox Size="60,20" Name="bat" Checked="true" Text="自动" ToolTip="ttp_bat"/><TextBox Size="40,20" Name="pkg_units" ToolTip="ttp_pkg_units" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg_pkg</DbTable><Data>COUNT(*)</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails><OnEnchange><if cond="%{pkg_units}&gt;=%{pkg_maxunits}"><SetVisible name="insertpkg_pkg" Visible="0"/><assign expr="0" name="bat"/></if></OnEnchange></TextBox><TextBox Size="40,20" Name="pkg_maxunits" ToolTip="ttp_pkg_maxunits" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg JOIN pkg_specification ON pkg_spec=specification_id</DbTable><Data>max_units</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails></TextBox>]]></addons>
+  <Ctrls>
+    <Ctrl ctrldbdata="pkg_sn,pkg_id" noquery="1" Required="1" ctrldbdatarel="pkg_id" ctrldbwhere="pkg_tp='bag'" ctrldbname="bosa." name="pkg_id" ctrldbtable="pkg"/>
+    <Ctrl ctrldbdata="pkg_sn,pkg_id" Required="1" ctrldbdatarel="pkg_id" ctrldbwhere="pkg_tp='box'" ctrldbname="bosa." name="pkg_x_id" ctrldbtable="pkg">
+      <extelmt><![CDATA[<OnEnterKey><if cond="'%{pkg_x_id}'&&!'%{pkg_x_id[pkg_id]}'"><DbDetails ><where>pkg_sn='%{pkg_x_id}'</where></DbDetails><submit next="pkg_x_id" namelist="DbDetails"/><if cond="%{bat}"><Sleep interval="500"/><submit function="click" next="insertpkg_pkg"/></if></if></OnEnterKey>]]></extelmt>
+    </Ctrl>
+    <Ctrl insertparam="now()" noquery="1" noUpdate="1" name="created_dt" ctrlhide="1"/>
+    <Ctrl insertparam="%{user_id}" noquery="1" noUpdate="1" name="created_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" updateparam="now()" name="updated_dt" ctrlhide="1"/>
+    <Ctrl insertparam="%{user_id}" noquery="1" updateparam="%{user_id}" name="updated_by" ctrlhide="1"/>
+    <Ctrl noquery="0" noUpdate="1" noInsert="1" nomodify="1" name="pkg_pkg_id" ctrlhide="1" noInAndUp="1">
+      <extelmt><![CDATA[<OnEnChange><if cond="'%{pkg_pkg_id}'"><if cond="%{bat}"><submit next="pkg_x_id" function="reset"/><submit next="pkg_units"/><else/><SetVisible name="insertpkg_pkg" Visible="0"/><SetVisible name="modifypkg_pkg" Visible="1"/></if><else/><SetVisible name="insertpkg_pkg" Visible="1"/><SetVisible name="modifypkg_pkg" Visible="0"/></if></OnEnChange>]]></extelmt>
+    </Ctrl>
+  </Ctrls>
+</biztoolcfg>

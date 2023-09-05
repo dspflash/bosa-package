@@ -1,0 +1,38 @@
+﻿<GroupBox Name="GBDEDITitem"><Ctrls>
+<GroupBox Multiline="0" Name="GB_item_number" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_item_number" Text="item_number"/>
+<TextBox Weight="110" Size="110,20" Name="item_number" Text="" ToolTip="ttp_item_number"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_item_name" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_item_name" Text="item_name"/>
+<TextBox Weight="110" Size="110,20" Name="item_name" Text="" ToolTip="ttp_item_name"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_product_line" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_product_line" Text="product_line"/>
+<TextBox Weight="110" Size="110,20" Name="product_line" Text="" ToolTip="ttp_product_line"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_by" Visible="false" Text="created_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="created_by" Visible="false" Text="" ToolTip="ttp_created_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_creation_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_creation_date" Visible="false" Text="creation_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="creation_date" Visible="false" Text="" ToolTip="ttp_creation_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_by" Visible="false" Text="last_update_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="last_update_by" Visible="false" Text="" ToolTip="ttp_last_update_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_date" Visible="false" Text="last_update_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="last_update_date" Visible="false" Text="" ToolTip="ttp_last_update_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_item_id_m" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_item_id_m" Visible="false" Text="item_id_m"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="item_id_m" Visible="false" Text="" ToolTip="ttp_item_id_m"><OnEnChange><submit next="item_rev_number"/></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_item_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_item_id" Visible="false" Text="item_id" readonly="true"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="item_id" Visible="false" Text="" ToolTip="ttp_item_id" readonly="true"><OnEnChange><if cond="'%{item_id}'"><if cond="%{item_id}!='%{item_id_m}'"><DbDetails><Queryformat>update item set item_id_m=%{item_id} where item_id=%{item_id}</Queryformat></DbDetails><submit namelist="DbDetails"/></if></if></OnEnChange><OnEnChange><if cond="'%{item_id}'"><SetVisible name="insertitem" Visible="0"/><SetVisible name="modifyitem" Visible="1"/><else/><SetVisible name="insertitem" Visible="1"/><SetVisible name="modifyitem" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

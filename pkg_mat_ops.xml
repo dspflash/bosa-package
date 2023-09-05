@@ -1,0 +1,9 @@
+﻿<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="addone" mustselected="0"><if cond="!%{pkg_id}"><alert expr="pkg_id is Empty!"/><else/><submit next="$parent.pkg_mat.GBDEDITpkg_mat" function="reset"/><DbDetails ><where>pkg_id=%{pkg_id}</where></DbDetails><submit next="$parent.pkg_mat.pkg_id" namelist="DbDetails"/><submit next="$parent.pkg_mat.pkg_maxunits" namelist="DbDetails"/><submit next="$parent.pkg_mat.pkg_units" namelist="DbDetails"/><assign name="$parent.pkg_mat.frmwndctrl" expr="%{this}"/></if></op>
+<!--op text="modify"><DbDetails><Where>pkg_mat_id='%{pkg_mat_vLst[pkg_mat_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.pkg_mat.pkg_matLst"/><assign name="$parent.pkg_mat.frmwndctrl" expr="%{this}"/></op-->
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>pkg_mat</DbTable>
+<Where>pkg_mat_id='%{pkg_mat_vLst[pkg_mat_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>

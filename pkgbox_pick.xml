@@ -1,0 +1,28 @@
+﻿<WndTap Name="pkgbox_pick" Text="pkgbox_Pick">
+<var name="searchtmpl"><pkg_id format="p.pkg_id='%{opvalue}'"/><pkg_x_id format="p.pkg_x_id='%{opvalue}'"/><created_dt format="(p.created_dt between '%{created_dt[datetime]}' and '%{created_dt[datetime2]}')"/><created_by format="(p.created_by like '%%{opvalue}%')"/><updated_dt format="(p.updated_dt between '%{updated_dt[datetime]}' and '%{updated_dt[datetime2]}')"/><updated_by format="(p.updated_by like '%%{opvalue}%')"/><pkg_pkg_id format="(p.pkg_pkg_id like '%%{opvalue}%')"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\pkgbox.xml"/>
+<Ctrls><GroupBox  Name="GBpkg_pkg" id="pkg_pkg" Text="pkg_pkg" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkgbox_Vs.xml"/>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVpkg_pkg" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetpkg_pkg" Name="resetpkg_pkg" Size="50,20">
+	<OnClick>
+		<submit next="GBDEDITpkg_pkg" function="reset"/>
+	</OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchpkg_pkg" Name="gsearchpkg_pkg" Size="50,20">
+	<OnClick>
+		<search next="pkg_pkg_vLst" listed="0" prefixwhere="0" prefixand="0" inputed="1">%{searchtmpl}</search><submit next="GBDEDITpkg_pkg" namelist="search" function="search"/>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Name="GBDVpkg_pkg" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_pkg_vLst" ToolTip="ttp_pkg_pkg_v" Size="700,450" Heading="pkg_id,100;pkg_x_id,100;created_dt,150;created_by,30;updated_dt,150;updated_by,30;pkg_pkg_id,100;" onload="0" loadedclick="0">
+	<DbDetails >
+<Index>pkg_pkg_id</Index>
+<DbTable>bosa.pkg_pkg p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.pkg p1 on p.pkg_x_id=p1.pkg_id</DbTable>
+<Data>p0.pkg_sn pkg_id,p1.pkg_sn pkg_x_id,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_pkg_id</Data>
+<Order>pkg_pkg_id</Order></DbDetails>
+<OnClick><if cond="%{pkg_pkg_vLst[pkg_pkg_id]}"><DbDetails><Where>pkg_pkg_id='%{pkg_pkg_vLst[pkg_pkg_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.%{frmwndctrl}"/><submit function="onok"/></if></OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

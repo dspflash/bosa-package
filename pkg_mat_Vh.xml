@@ -1,0 +1,12 @@
+﻿<GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12" visible="0"><Ctrls>
+<ListCtrl Name="pkg_matLst" ToolTip="ttp_pkg_mat" Size="70,20" visible="0" loadedclick="1">
+	<DbDetails fcsm="1">
+<Index>pkg_mat_id</Index>
+<DbTable>bosa.pkg_mat</DbTable>
+<Data>pkg_id,mat_id,created_dt,created_by,updated_dt,updated_by,pkg_mat_id</Data>
+<Order>pkg_mat_id</Order></DbDetails>
+<OnClick><assign name="pkg_id[pkg_id]" expr="%{pkg_matLst[pkg_id]}" function="SetSel"/><assign name="mat_id[id]" expr="%{pkg_matLst[mat_id]}" function="SetSel"/>
+<if cond="'%{pkg_mat_id}'"><SetVisible name="insertpkg_mat" Visible="0"/><SetVisible name="modifypkg_mat" Visible="1"/></if>
+</OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>

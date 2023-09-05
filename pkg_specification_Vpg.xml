@@ -1,0 +1,18 @@
+﻿<GroupBox cols="xs12 sm6 md4" Multiline="0" Name="GBPGpkg_specification"><Ctrls>
+<Label Align="Right" Text="Records" Name="lb_Records" Size="60,20"/>
+<TextBox Weight="40" ToolTip="ttp_records" Name="records_pkg_specification" Size="40,20" OnLoad="init" readonly="1">
+<DbDetails fcsm="1">
+<Index>specification_id</Index>
+<DbTable>bosa.pkg_specification p</DbTable>
+<Data>count(*) records</Data>
+<Order>specification_id</Order><Queryformat>select %{data} from (select p.specification_id from %{dbtable} %{where} GROUP BY p.specification_id  ORDER BY p.specification_id) t</Queryformat></DbDetails>
+<OnEnchange>
+<assign name="pgs_pkg_specification" expr="js(Math.ceil(%{records_pkg_specification}/%{pkg_specification_vLst[countsperpage]}))"/>
+<assign name="pgscb_pkg_specification" expr="js('1~'+Math.ceil(%{records_pkg_specification}/%{pkg_specification_vLst[countsperpage]}))" function="setitems"/>
+</OnEnchange>
+</TextBox>
+<!--ComboBox Weight="60" ToolTip="ttp_pgs" Name="pgscb_pkg_specification" Size="60,20"><OnSelEndOK><submit next="pkg_specification_vLst" function="GetPage(%{pgscb_pkg_specification}-1)"/></OnSelEndOK></ComboBox-->
+<TextBox Weight="30" ToolTip="ttp_pgs" Name="pgs_pkg_specification" Size="30,20" readonly="1"/>
+<TextBox Weight="30" ToolTip="ttp_pgcur" Name="pgcur_pkg_specification" Size="30,20"/>
+<Button Text="go2Page" Name="go2pagepkg_specification_vLst" Size="50,20"><OnClick><submit next="pkg_specification_vLst" function="GetPage(%{pgcur_pkg_specification}-1)"/></OnClick></Button>
+</Ctrls></GroupBox>

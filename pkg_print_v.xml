@@ -1,0 +1,98 @@
+﻿<WndTap Text="pkg_print" Name="pkg_print" Ver="2" popup="1">
+<WndTaps>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_print_tag.xml" popup="1"/>
+</WndTaps>
+<var name="lb_pkg_no" expr=""/>
+<Language name="bc_label_rule">
+<Lang name="lot_number_id" value="批次号"/>
+</Language>
+<Ctrls>
+<GroupBox Text="tag_print" Name="GBtag_print" id="tag_print" Size="100,100"><Ctrls>
+	<GroupBox Multiline="0" Name="GB_itemname" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_itemname" Text="itemname"/>
+	<TextBox Weight="140" Size="140,20" Name="itemname" Text="" ToolTip="ttp_itemname"/>
+	</Ctrls></GroupBox>
+	<GroupBox Multiline="0" Name="GB_itemnumber" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_itemnumber" Text="itemnumber"/>
+	<TextBox Weight="140" Size="140,20" Name="itemnumber" Text="" ToolTip="ttp_itemnumber"/>
+	</Ctrls></GroupBox>
+	<GroupBox Multiline="0" Name="GB_product_spec" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_product_spec" Text="product_spec"/>
+	<TextBox Weight="140" Size="140,20" Name="product_spec" Text="" ToolTip="ttp_product_spec"/>
+	</Ctrls></GroupBox>
+	<BR AutoHeight="1"/>
+	<GroupBox Multiline="0" Name="GB_lot" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_lot" Text="lot"/>
+	<TextBox Weight="140" Size="140,20" Name="lot" Text="" ToolTip="ttp_lot"/>
+	</Ctrls></GroupBox>
+	<GroupBox Multiline="0" Name="GB_quantity" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_quantity" Text="quantity"/>
+	<TextBox Weight="140" Size="140,20" Name="quantity" Text="" ToolTip="ttp_quantity"/>
+	</Ctrls></GroupBox>
+	<GroupBox Multiline="0" Name="GB_pkg_no" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_pkg_no" Text="pkg_no"/>
+	<TextBox Weight="140" Size="140,20" Name="pkg_no" Text="" ToolTip="ttp_pkg_no"/>
+	</Ctrls></GroupBox>
+	<BR AutoHeight="1"/>
+	<GroupBox Multiline="0" Name="GB_dt" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_dt" Text="dt"/>
+	<DateTime Weight="140" Size="140,20" Name="dt" Text="" Format="yyyy-MM-dd" ToolTip="ttp_dt"/>
+	</Ctrls></GroupBox>
+	<GroupBox Multiline="0" Name="GB_pgk_date" cols="xs12 sm6 md4"><Ctrls>
+	<Label Align="Right" Size="90,20" Name="lb_pgk_date" Text="pgk_date"/>
+	<DateTime Weight="140" Size="140,20" Name="pgk_date" Text="" Format="yyyy-MM-dd" ToolTip="ttp_pgk_date"/>
+	</Ctrls></GroupBox>
+	<BR AutoHeight="1"/>
+<ListCtrl Name="item_vLst" ToolTip="ttp_item_v" Size="700,60" DataJoin="%{this}%{prop}" DataJoinKey="item_id_m"  Heading="" loadedclick="1">
+	<DbDetails>
+<Index>item_id</Index>
+<DbTable>bosa.item i</DbTable>
+<Data>i.item_id_m</Data>
+<Order>item_id</Order></DbDetails>
+<MDX id="prop" datatype="string"><DbDetails><DbTable>item_properties i left join item_property i0 on i.property_id=i0.property_id</DbTable>where 	<Index>h_id </Index><MDX>item_id_m,propname,propvalue</MDX><Data>item_id_m,i0.prop_display_name propname,i.property_value propvalue</Data><Order/><Where>and item_status!=278</Where><queryFormat>select %{data} from %{dbtable} where (org_id,item_id_m) IN (select * from(SELECT i.org_id,i.item_id_m from item i where %{where} limit %{StartRow},%{PgSize}) as orgitem)</queryFormat></DbDetails></MDX><DbDetails><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} where %{where} limit %{StartRow},%{PgSize}</queryFormat></DbDetails>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="item_ops.xml"/>
+<OnClick><assign name="itemname" expr="%{item_vLst[产品品名]}"/></OnClick>
+<OnChanged>
+<assign name="pgcur_item" expr="js(%{item_vLst[currentpage]}+1)"/>
+<assign name="pgscb_item" expr="js(%{item_vLst[currentpage]}+1)" function="SetSel"/>
+</OnChanged></ListCtrl>
+	<BR AutoHeight="1"/>
+	<Button Text="print" ToolTip="ttp_print" Name="print" Size="100,20" visible="true"><OnClick>	<!--if cond="'%{traceinfo_vLst[product_spec]}'"-->
+		<!--assign name="$this.TagPrint.itemname" expr="%{itemname}"/-->
+		<assign name="$this.TagPrint.itemnumber" expr="%{itemnumber}"/>
+		<assign name="$this.TagPrint.lb_pkg_no" expr="%{lb_pkg_no}"/>
+		<!--assign name="$this.TagPrint.product_spec" expr="%{traceinfo_vLst[product_spec]}"/>
+		<assign name="$this.TagPrint.pkg_no" expr="%{traceinfo_vLst[pkg_no]}"/>
+		<assign name="$this.TagPrint.quantity" expr="%{traceinfo_vLst[quantity]}"/>
+		<assign name="$this.TagPrint.itemrev" expr="%{traceinfo_vLst[itemrev]}"/>
+		<assign name="$this.TagPrint.hole" expr="%{traceinfo_vLst[hole]}"/>
+		<assign name="$this.TagPrint.dt" expr="%{traceinfo_vLst[dt]}"/>
+		<assign name="$this.TagPrint.dt1" expr="%{traceinfo_vLst[dt]}"/>
+		<assign name="$this.TagPrint.quantity1" expr="%{traceinfo_vLst[quantity]}"/-->
+		<magicdata type="20" width="80" height="10" filename="qr_product_spec.png"><data>%{product_spec}</data></magicdata>
+		<submit next="$this.TagPrint.qr_product_spec" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata secure="1" filename="qr_item.png"><data>%{itemname}</data></magicdata>
+		<submit next="$this.TagPrint.qr_itemname" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata type="20" width="80" height="12"  filename="qr_itemnumber.png"><data>%{itemnumber}</data></magicdata>
+		<submit next="$this.TagPrint.qr_itemnumber" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata type="20" width="80" height="12"  filename="qr_quantity.png"><data>%{quantity}</data></magicdata>
+		<submit next="$this.TagPrint.qr_quantity" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata type="20" width="60" height="10"  filename="qr_pkg_no.png"><data>%{pkg_no}</data></magicdata>
+		<submit next="$this.TagPrint.qr_pkg_no" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<!--assign name="$this.TagPrint.lot" expr="%{traceinfo_vLst[lotA]}-%{box_number}"/-->
+		<magicdata type="20" width="80" height="13" filename="qr_lot.png"><data>%{lot}</data></magicdata>
+		<submit next="$this.TagPrint.qr_lot" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata type="20" width="80" height="12" filename="qr_Date.png"><data>%{dt}</data></magicdata>
+		<submit next="$this.TagPrint.qr_date" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<magicdata type="20" width="80" height="12" filename="qr_pgk_date.png"><data>%{pgk_date}</data></magicdata>
+		<submit next="$this.TagPrint.qr_pgk_date" namelist="magicdata" function="B65ABE3E-702E-4762-99FD-FB40546733B0"/>
+		<!--/if--></OnClick></Button>
+		<BR AutoHeight="1"/>
+		<Label Align="Right" Text="" Name="lb_" Size="30,20"/>
+		<BR AutoHeight="1"/>
+		<Label Align="Right" Text="" Name="lb_" Size="30,50"/>
+		<!--xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_print_GBD.xml"></xi:include-->
+		<Label Align="Right" Text="" Name="lb_" Size="30,50"/>
+	</Ctrls></GroupBox>
+	</Ctrls>
+	</WndTap>

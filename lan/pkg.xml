@@ -1,0 +1,35 @@
+﻿<Language name="pkg">
+<Lang name="pkg" value="包装盒"/>
+<Lang name="pkg_v" value="包装盒管理"/>
+<Lang name="TabEditpkg" value="pkg Edit"/>
+<Lang name="TabViewpkg" value="pkg View"/>
+<Lang name="pkg_sn" value="盒标签"/>
+<Lang name="ttp_pkg_sn" value=""/>
+<Lang name="remark" value=""/>
+<Lang name="ttp_remark" value=""/>
+<Lang name="created_dt" value=""/>
+<Lang name="ttp_created_dt" value=""/>
+<Lang name="created_by" value=""/>
+<Lang name="ttp_created_by" value=""/>
+<Lang name="updated_dt" value=""/>
+<Lang name="ttp_updated_dt" value=""/>
+<Lang name="updated_by" value=""/>
+<Lang name="ttp_updated_by" value=""/>
+<Lang name="pkg_id" value="包装盒"/>
+<Lang name="ttp_pkg_id" value=""/>
+<Lang name="ttp_operationpkg" value=""/>
+<Lang name="ttp_createpkg" value=""/>
+<Lang name="ttp_modifypkg" value=""/>
+<Lang name="ttp_resetpkg" value=""/>
+<Lang name="ttp_deletepkg" value=""/>
+<Lang name="ttp_refreshpkg" value=""/>
+<Lang name="operation" value=""/>
+<Lang name="create" value=""/>
+<Lang name="modify" value=""/>
+<Lang name="reset" value=""/>
+<Lang name="delete" value=""/>
+<Lang name="refresh" value=""/>
+<Lang name="firstpage" value=""/>
+<Lang name="prepage" value=""/>
+<Lang name="nextpage" value=""/>
+</Language>

@@ -1,0 +1,16 @@
+﻿<GroupBox Name="GBDEDITpkg_pkg" text="Search" toggle="1"><Ctrls>
+<GroupBox Name="GB_pkg_x_id" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_pkg_x_id" Size="120,20" Text="pkg_x_id" Align="Right"/>
+<TextBox Name="pkg_x_id" Size="110,20" Text="" Weight="110" ToolTip="ttp_pkg_x_id">
+	<DbDetails>
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg</DbTable>
+<Data>pkg_sn,pkg_id</Data>
+<Where>pkg_tp='box'</Where>
+<queryFormat></queryFormat></DbDetails><OnEnterKey><if cond="'%{pkg_x_id}'&&!'%{pkg_x_id[pkg_id]}'"><DbDetails ><where>pkg_sn='%{pkg_x_id}'</where></DbDetails><submit next="pkg_x_id" namelist="DbDetails"/><if cond="%{bat}"><Sleep interval="500"/><submit function="click" next="insertpkg_pkg"/></if></if></OnEnterKey></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Name="GB_pkg_pkg_id" Multiline="0" cols="xs12 sm6 md4"><Ctrls>
+<Label Name="lb_pkg_pkg_id" Size="120,20" Text="pkg_pkg_id" Align="Right"/>
+<TextBox Name="pkg_pkg_id" Size="110,20" Text="" Weight="110" ToolTip="ttp_pkg_pkg_id"><OnEnChange><if cond="'%{pkg_pkg_id}'"><if cond="%{bat}"><submit next="pkg_x_id" function="reset"/><submit next="pkg_units"/><else/><SetVisible name="insertpkg_pkg" Visible="0"/><SetVisible name="modifypkg_pkg" Visible="1"/></if><else/><SetVisible name="insertpkg_pkg" Visible="1"/><SetVisible name="modifypkg_pkg" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

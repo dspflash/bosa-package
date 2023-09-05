@@ -1,0 +1,44 @@
+﻿<GroupBox Name="GBDEDITpkg"><Ctrls>
+<GroupBox Multiline="0" Name="GB_pkg_sn" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_pkg_sn" Text="pkg_sn"/>
+<TextBox Weight="110" Size="110,20" Name="pkg_sn" Text="" ToolTip="ttp_pkg_sn"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_pkg_tp" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_pkg_tp" Visible="false" Text="pkg_tp" readonly="true"/>
+<ComboBox overlap="pre" Items="box|bag|carton" Weight="110" Size="110,100" Name="pkg_tp" Visible="false" Text="" ToolTip="ttp_pkg_tp" readonly="true"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_pkg_spec" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_pkg_spec" Text="pkg_spec" onload="init"/>
+<ComboBox Weight="90" Size="90,100" Name="pkg_spec" Text="" ToolTip="ttp_pkg_spec" onload="init">
+	<DbDetails>
+<Index>specification_id</Index>
+<DbTable>bosa.pkg_specification</DbTable>
+<Data>specification_name,specification_id</Data>
+<Where>pkg_tp='carton'</Where>
+<queryFormat/></DbDetails></ComboBox>
+<MagicCtrl Link="tip:刷新" images=",data/refresh.png" button="type:0" Size="20,20" Name="refreshpkg_spec"><OnClick><submit next="pkg_spec"/></OnClick></MagicCtrl>\r\n</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_remark" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_remark" Text="remark"/>
+<TextBox Weight="110" Size="110,20" Name="remark" Text="" ToolTip="ttp_remark"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_dt" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_dt" Visible="false" Text="created_dt"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="created_dt" Visible="false" Text="" ToolTip="ttp_created_dt"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_by" Visible="false" Text="created_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="created_by" Visible="false" Text="" ToolTip="ttp_created_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_updated_dt" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_updated_dt" Visible="false" Text="updated_dt"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="updated_dt" Visible="false" Text="" ToolTip="ttp_updated_dt"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_updated_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_updated_by" Visible="false" Text="updated_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="updated_by" Visible="false" Text="" ToolTip="ttp_updated_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_pkg_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_pkg_id" Visible="false" Text="pkg_id" readonly="true"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="pkg_id" Visible="false" Text="" ToolTip="ttp_pkg_id" readonly="true"><OnEnChange><if cond="'%{pkg_id}'"><SetVisible name="insertpkg" Visible="0"/><SetVisible name="modifypkg" Visible="1"/><else/><SetVisible name="insertpkg" Visible="1"/><SetVisible name="modifypkg" Visible="0"/></if><if cond="'%{pkg_id}'"><DbDetails><Where>p.pkg_id='%{pkg_id}'</Where></DbDetails><submit namelist="DbDetails" next="pkg_pkg_vLst"/><else/><submit function="resetcontent" next="pkg_pkg_vLst"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>

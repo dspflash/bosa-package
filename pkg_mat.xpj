@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biztoolcfg jointbls="1" tableTxt="pkg_mat" header2Link="pkg_id" qryfmtOpCreate="" referLst="0" lines2Link="" qryfmtOpUpdate="" exdata4select="" onLoadInit="0" loadedClick="0" tableNm="pkg_mat" LstTP="Lst">
+  <operators4v><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_ops.xml"/>]]></operators4v>
+  <addons><![CDATA[<BR AutoHeight="1"/><Label Size="100,20"/><CheckBox Size="60,20" Name="bat" Checked="true" Text="自动" ToolTip="ttp_bat"/><TextBox Size="40,20" Name="pkg_units" ToolTip="ttp_pkg_units" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg_mat</DbTable><Data>COUNT(*)</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails><OnEnchange><if cond="%{pkg_units}&gt;=%{pkg_maxunits}"><SetVisible name="insertpkg_mat" Visible="0"/><assign expr="0" name="bat"/></if></OnEnchange></TextBox><TextBox Size="40,20" Name="pkg_maxunits" ToolTip="ttp_pkg_maxunits" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg JOIN pkg_specification ON pkg_spec=specification_id</DbTable><Data>max_units</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails></TextBox>]]></addons>
+  <Ctrls>
+    <Ctrl ctrldbdata="pkg_sn,pkg_id" Required="1" ctrldbdatarel="pkg_id" ctrldbname="bosa." name="pkg_id" ctrldbtable="pkg"/>
+    <Ctrl ctrldbdata="sn,MAX(id) id" noquery="1" Required="1" ctrldbdatarel="id" queryformat="select %{data} from %{dbtable} where %{where} GROUP BY sn" ctrldbname="bosa." name="mat_id" ctrldbtable="MAC_10GBOSADATA">
+      <extelmt><![CDATA[<OnEnterKey><if cond="'%{mat_id}'&&!'%{mat_id[id]}'"><DbDetails ><where>sn='%{mat_id}'</where></DbDetails><submit next="mat_id" namelist="DbDetails"/><if cond="%{bat}"><Sleep interval="500"/><submit function="click" next="insertpkg_mat"/></if></if></OnEnterKey>]]></extelmt>
+    </Ctrl>
+    <Ctrl insertparam="'%{mat_id[sn]}'" noquery="0" noSelect="1" updateparam="'%{mat_id[sn]}'" name="mat_sn" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" noUpdate="1" ctrldbname="test.dbo." name="created_dt" ctrlhide="1"/>
+    <Ctrl insertparam="%{user_id}" noquery="1" noUpdate="1" ctrldbname="test.dbo." name="created_by" ctrlhide="1"/>
+    <Ctrl insertparam="now()" noquery="1" updateparam="now()" ctrldbname="test.dbo." name="updated_dt" ctrlhide="1"/>
+    <Ctrl insertparam="%{user_id}" noquery="1" updateparam="%{user_id}" ctrldbname="test.dbo." name="updated_by" ctrlhide="1"/>
+    <Ctrl noquery="1" noUpdate="1" noInsert="1" ctrldbname="test.dbo." nomodify="1" name="pkg_mat_id" ctrlhide="1" noInAndUp="1">
+      <extelmt><![CDATA[<OnEnChange><if cond="'%{pkg_mat_id}'"><if cond="%{bat}"><submit next="mat_id" function="reset"/><submit next="pkg_units"/><else/><SetVisible name="insertpkg_mat" Visible="0"/><SetVisible name="modifypkg_mat" Visible="1"/></if><else/><SetVisible name="insertpkg_mat" Visible="1"/><SetVisible name="modifypkg_mat" Visible="0"/></if></OnEnChange>]]></extelmt>
+    </Ctrl>
+  </Ctrls>
+</biztoolcfg>

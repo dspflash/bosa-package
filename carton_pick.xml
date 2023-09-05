@@ -1,0 +1,29 @@
+﻿<WndTap Name="carton_pick" Text="carton_Pick">
+<var name="searchtmpl"><pkg_sn format="(p.pkg_sn like '%%{opvalue}%')"/><pkg_spec format="p.pkg_spec='%{opvalue}'"/><remark format="(p.remark like '%%{opvalue}%')"/><created_dt format="(p.created_dt between '%{created_dt[datetime]}' and '%{created_dt[datetime2]}')"/><created_by format="(p.created_by like '%%{opvalue}%')"/><updated_dt format="(p.updated_dt between '%{updated_dt[datetime]}' and '%{updated_dt[datetime2]}')"/><updated_by format="(p.updated_by like '%%{opvalue}%')"/><pkg_id format="(p.pkg_id like '%%{opvalue}%')"/></var>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="lan\carton.xml"/>
+<Ctrls><GroupBox  Name="GBpkg" id="pkg" Text="pkg" Size="100,100"><Ctrls>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="carton_Vs.xml"/>
+<BR AutoHeight="1"/><GroupBox  Name="GBOPVpkg" Size="100,20" cols="xs12 sm6 md4"><Ctrls>
+<Button Text="reset" ToolTip="ttp_resetpkg" Name="resetpkg" Size="50,20">
+	<OnClick>
+		<submit next="GBDEDITpkg" function="reset"/>
+	</OnClick>
+</Button><TAB/>
+<Button Text="Search" ToolTip="ttp_gsearchpkg" Name="gsearchpkg" Size="50,20">
+	<OnClick>
+		<search next="pkg_vLst" listed="0" prefixwhere="1" prefixand="0" inputed="1">%{searchtmpl}</search><submit next="GBDEDITpkg" namelist="search" function="search"/>
+	</OnClick>
+</Button><TAB/></Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Name="GBDVpkg" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Name="pkg_vLst" ToolTip="ttp_pkg_v" Size="700,450" Heading="" loadedclick="0">
+	<DbDetails >
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg p LEFT JOIN pkg_pkg pc ON pc.pkg_id=p.pkg_id LEFT JOIN pkg_mat pb LEFT JOIN mac_10gbosadata m ON m.SN=pb.mat_sn LEFT JOIN item i ON i.item_number=m.ProductBill LEFT JOIN pkg_pkg  pg ON pb.pkg_id=pg.pkg_x_id ON pg.pkg_id=pc.pkg_x_id LEFT JOIN bosa.pkg_specification p0 ON p.pkg_spec=p0.specification_id</DbTable>
+<Data>p.pkg_sn,p0.specification_name pkg_spec,p.remark,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_id</Data>
+<Order>pkg_id</Order></DbDetails>
+<DbDetails><Data>p.pkg_sn,p0.specification_name pkg_spec,COUNT(DISTINCT pg.pkg_id) cnts,i.item_name,i.item_number,i.item_id_m,p.remark,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_id</Data><Where>where p.pkg_tp='carton'</Where><queryFormat xml:base="d:\Program Files (x86)\3UCS\3UCS Server\layout\biztools\mysqlcfg.xml" id="tbpages">select %{data} from %{dbtable} %{where} GROUP BY p.pkg_id limit %{StartRow},%{PgSize}</queryFormat></DbDetails>
+<OnClick><if cond="%{pkg_vLst[pkg_id]}"><DbDetails><Where>pkg_id='%{pkg_vLst[pkg_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$parent.%{frmwndctrl}"/><submit function="onok"/></if></OnClick>
+</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

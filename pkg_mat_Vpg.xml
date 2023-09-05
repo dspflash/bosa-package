@@ -1,0 +1,18 @@
+﻿<GroupBox cols="xs12 sm6 md4" Multiline="0" Name="GBPGpkg_mat"><Ctrls>
+<Label Align="Right" Text="Records" Name="lb_Records" Size="60,20"/>
+<TextBox Weight="40" ToolTip="ttp_records" Name="records_pkg_mat" Size="40,20" OnLoad="init" readonly="1">
+<DbDetails fcsm="1">
+<Index>pkg_mat_id</Index>
+<DbTable>bosa.pkg_mat p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.MAC_10GBOSADATA m on p.mat_id=m.id</DbTable>
+<Data>count(*) records</Data>
+<Order>pkg_mat_id</Order><Queryformat>select %{data} from (select p.pkg_mat_id from %{dbtable} %{where} GROUP BY p.pkg_mat_id  ORDER BY p.pkg_mat_id) t</Queryformat></DbDetails>
+<OnEnchange>
+<assign name="pgs_pkg_mat" expr="js(Math.ceil(%{records_pkg_mat}/%{pkg_mat_vLst[countsperpage]}))"/>
+<assign name="pgscb_pkg_mat" expr="js('1~'+Math.ceil(%{records_pkg_mat}/%{pkg_mat_vLst[countsperpage]}))" function="setitems"/>
+</OnEnchange>
+</TextBox>
+<!--ComboBox Weight="60" ToolTip="ttp_pgs" Name="pgscb_pkg_mat" Size="60,20"><OnSelEndOK><submit next="pkg_mat_vLst" function="GetPage(%{pgscb_pkg_mat}-1)"/></OnSelEndOK></ComboBox-->
+<TextBox Weight="30" ToolTip="ttp_pgs" Name="pgs_pkg_mat" Size="30,20" readonly="1"/>
+<TextBox Weight="30" ToolTip="ttp_pgcur" Name="pgcur_pkg_mat" Size="30,20"/>
+<Button Text="go2Page" Name="go2pagepkg_mat_vLst" Size="50,20"><OnClick><submit next="pkg_mat_vLst" function="GetPage(%{pgcur_pkg_mat}-1)"/></OnClick></Button>
+</Ctrls></GroupBox>

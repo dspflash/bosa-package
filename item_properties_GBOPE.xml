@@ -1,0 +1,37 @@
+﻿<GroupBox Size="100,100" Name="GBOPEitem_properties" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" sqlpkinsert="idx" Name="insertitem_properties" Text="create" ToolTip="ttp_createitem_properties">
+<OnClick>
+<DbDetails mode="insert" fcsm="1">
+<DbTable>bosa.item_properties</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>item_id_m[item_id_m],property_id[property_id],property_value</Data>
+<DataEx>created_by,creation_date,last_update_by,last_update_date,org_id;'%{user_id}',now(),'%{user_id}',now(),'%{orgid}'</DataEx>
+<queryFormat>insert into %{table} %{data}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{insertitem_properties[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="item_propertiesLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="1"><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.item_properties_vLst"/></if></if></if></if>
+	</OnClick>
+	</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="modifyitem_properties" Text="modify" ToolTip="ttp_modifyitem_properties">
+<OnClick>
+<DbDetails mode="update" fcsm="1">
+<DbTable>bosa.item_properties</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>item_id_m[item_id_m],property_id[property_id],property_value</Data>
+<DataEx>last_update_by,last_update_date;'%{user_id}',now()</DataEx>
+<Where>idx='%{idx}'</Where>
+<queryFormat>update %{table} set %{data} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{modifyitem_properties[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="item_propertiesLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.item_properties_vLst"/></if></if></if>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="resetitem_properties" Text="reset" ToolTip="ttp_resetitem_properties">
+<OnClick>
+<submit function="reset" next="GBDEDITitem_properties"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="gsearchitem_properties" visible="false" Text="Search" ToolTip="ttp_gsearchitem_properties">
+<OnClick>
+<search prefixand="0" inputed="1" next="item_propertiesLst" prefixwhere="0" listed="0"/><submit namelist="search" function="search" next="GBDEDITitem_properties"/>
+	</OnClick>
+</Button><TAB/>
+</Ctrls></GroupBox>

@@ -1,0 +1,113 @@
+﻿/****** Object:  Table [dbo].[pkg_mat]    Script Date: 07/10/2023 11:41:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[pkg_mat](
+	[pkg_mat_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[pkg_id] [bigint] NOT NULL,
+	[mat_id] [bigint] NOT NULL,
+	[created_dt] [datetime] NULL,
+	[created_by] [smallint] NULL,
+	[updated_dt] [datetime] NULL,
+	[updated_by] [smallint] NULL,
+ CONSTRAINT [PK_pkg_mat] PRIMARY KEY CLUSTERED 
+(
+	[pkg_mat_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_pkg_mat] ON [dbo].[pkg_mat] 
+(
+	[mat_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_pkg_mat_1] ON [dbo].[pkg_mat] 
+(
+	[pkg_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[bag_pkg]    Script Date: 07/10/2023 11:41:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[bag_pkg](
+	[bag_pkg_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[bag_id] [bigint] NOT NULL,
+	[pkg_id] [bigint] NOT NULL,
+	[created_dt] [datetime] NULL,
+	[created_by] [smallint] NULL,
+	[updated_dt] [datetime] NULL,
+	[updated_by] [smallint] NULL,
+ CONSTRAINT [PK_bag_pkg] PRIMARY KEY CLUSTERED 
+(
+	[bag_pkg_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_bag_pkg] ON [dbo].[bag_pkg] 
+(
+	[pkg_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_bag_pkg_1] ON [dbo].[bag_pkg] 
+(
+	[bag_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[carton_bag]    Script Date: 07/10/2023 11:41:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[carton_bag](
+	[carton_bag_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[carton_id] [bigint] NOT NULL,
+	[bag_id] [bigint] NOT NULL,
+	[created_dt] [datetime] NULL,
+	[created_by] [smallint] NULL,
+	[updated_dt] [datetime] NULL,
+	[updated_by] [smallint] NULL,
+ CONSTRAINT [PK_carton_bag] PRIMARY KEY CLUSTERED 
+(
+	[carton_bag_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_carton_bag] ON [dbo].[carton_bag] 
+(
+	[bag_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_carton_bag_1] ON [dbo].[carton_bag] 
+(
+	[carton_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[pkg]    Script Date: 07/10/2023 11:41:02 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[pkg](
+	[pkg_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[pkg_sn] [nvarchar](50) NOT NULL,
+	[remark] [nvarchar](50) NULL,
+	[created_dt] [datetime] NULL,
+	[created_by] [smallint] NULL,
+	[updated_dt] [datetime] NULL,
+	[updated_by] [smallint] NULL,
+ CONSTRAINT [PK_pkg] PRIMARY KEY CLUSTERED 
+(
+	[pkg_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_pkg] ON [dbo].[pkg] 
+(
+	[pkg_sn] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO

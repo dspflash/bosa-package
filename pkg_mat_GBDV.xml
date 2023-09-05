@@ -1,0 +1,10 @@
+﻿<GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12"><Ctrls>
+<ListCtrl Size="700,450" loadedclick="0" Name="pkg_matLst" ToolTip="ttp_pkg_mat" Heading="pkg_id,100;mat_id,100;created_dt,150;created_by,30;updated_dt,150;updated_by,30;pkg_mat_id,100;">
+	<DbDetails fcsm="1">
+<Index>pkg_mat_id</Index>
+<DbTable>bosa.pkg_mat p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.MAC_10GBOSADATA m on p.mat_id=m.id</DbTable>
+<Data>p0.pkg_sn pkg_id,m.sn mat_id,p.created_dt,p.created_by,p.updated_dt,p.updated_by,p.pkg_mat_id</Data>
+<Order>pkg_mat_id</Order></DbDetails>%{}
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pkg_mat_ops.xml"/>
+</ListCtrl>
+</Ctrls></GroupBox>

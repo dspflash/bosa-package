@@ -1,0 +1,37 @@
+﻿<GroupBox Size="100,100" Name="GBOPEpkg_mat" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" sqlpkinsert="pkg_mat_id" Name="insertpkg_mat" Text="create" ToolTip="ttp_createpkg_mat">
+<OnClick>
+<DbDetails mode="insert" fcsm="1">
+<DbTable>bosa.pkg_mat</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>pkg_id[pkg_id],mat_id[id]</Data>
+<DataEx>mat_sn,created_dt,created_by,updated_dt,updated_by;'%{mat_id[sn]}',now(),%{user_id},now(),%{user_id}</DataEx>
+<queryFormat>insert into %{table} %{data}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{insertpkg_mat[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_matLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="1"><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_mat_vLst"/></if></if></if></if>
+	</OnClick>
+	</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="modifypkg_mat" Text="modify" ToolTip="ttp_modifypkg_mat">
+<OnClick>
+<DbDetails mode="update" fcsm="1">
+<DbTable>bosa.pkg_mat</DbTable>
+<Required>%{dataRequired}</Required>
+<Requireless>%{dataRequireless}</Requireless>
+<Data>pkg_id[pkg_id],mat_id[id]</Data>
+<DataEx>mat_sn,updated_dt,updated_by;'%{mat_id[sn]}',now(),%{user_id}</DataEx>
+<Where>pkg_mat_id='%{pkg_mat_id}'</Where>
+<queryFormat>update %{table} set %{data} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><if cond="!%{modifypkg_mat[broke]}"><if cond="%{refreshAfterEdit}==1"><submit delay="1000" next="pkg_matLst"/><elseif cond="%{refreshAfterEdit}==2"/><if cond="'%{frmwndctrl}'"><submit delay="1000" next="%{frmwndctrl}"/><else/><submit delay="1000" next="$parent.pkg_mat_vLst"/></if></if></if>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="resetpkg_mat" Text="reset" ToolTip="ttp_resetpkg_mat">
+<OnClick>
+<submit function="reset" next="GBDEDITpkg_mat"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="gsearchpkg_mat" visible="false" Text="Search" ToolTip="ttp_gsearchpkg_mat">
+<OnClick>
+<search prefixand="0" inputed="1" next="pkg_matLst" prefixwhere="0" listed="0"/><submit namelist="search" function="search" next="GBDEDITpkg_mat"/>
+	</OnClick>
+</Button><TAB/>
+</Ctrls></GroupBox>

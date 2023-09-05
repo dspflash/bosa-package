@@ -1,0 +1,18 @@
+﻿<GroupBox cols="xs12 sm6 md4" Multiline="0" Name="GBPGpkg_pkg"><Ctrls>
+<Label Align="Right" Text="Records" Name="lb_Records" Size="60,20"/>
+<TextBox Weight="40" ToolTip="ttp_records" Name="records_pkg_pkg" Size="40,20" OnLoad="init" readonly="1">
+<DbDetails fcsm="1">
+<Index>pkg_pkg_id</Index>
+<DbTable>bosa.pkg_pkg p left join bosa.pkg p0 on p.pkg_id=p0.pkg_id left join bosa.pkg p1 on p.pkg_x_id=p1.pkg_id</DbTable>
+<Data>count(*) records</Data>
+<Order>pkg_pkg_id</Order><Queryformat>select %{data} from (select p.pkg_pkg_id from %{dbtable} %{where} GROUP BY p.pkg_pkg_id  ORDER BY p.pkg_pkg_id) t</Queryformat></DbDetails>
+<OnEnchange>
+<assign name="pgs_pkg_pkg" expr="js(Math.ceil(%{records_pkg_pkg}/%{pkg_pkg_vLst[countsperpage]}))"/>
+<assign name="pgscb_pkg_pkg" expr="js('1~'+Math.ceil(%{records_pkg_pkg}/%{pkg_pkg_vLst[countsperpage]}))" function="setitems"/>
+</OnEnchange>
+</TextBox>
+<!--ComboBox Weight="60" ToolTip="ttp_pgs" Name="pgscb_pkg_pkg" Size="60,20"><OnSelEndOK><submit next="pkg_pkg_vLst" function="GetPage(%{pgscb_pkg_pkg}-1)"/></OnSelEndOK></ComboBox-->
+<TextBox Weight="30" ToolTip="ttp_pgs" Name="pgs_pkg_pkg" Size="30,20" readonly="1"/>
+<TextBox Weight="30" ToolTip="ttp_pgcur" Name="pgcur_pkg_pkg" Size="30,20"/>
+<Button Text="go2Page" Name="go2pagepkg_pkg_vLst" Size="50,20"><OnClick><submit next="pkg_pkg_vLst" function="GetPage(%{pgcur_pkg_pkg}-1)"/></OnClick></Button>
+</Ctrls></GroupBox>

@@ -1,0 +1,17 @@
+﻿<GroupBox Size="100,100" Name="GBOPVpkg_mat" cols="xs12 sm6 md4"><Ctrls>
+<Button Weight="50" Size="50,20" Name="deletepkg_mat" Text="delete" ToolTip="ttp_deletepkg_mat">
+<OnClick>
+	<DbDetails fcsm="1">
+<DbTable>bosa.pkg_mat</DbTable>
+<Where>pkg_mat_id='%{pkg_matLst[pkg_mat_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit function="click" next="searchpkg_mat"/>
+	</OnClick>
+</Button><TAB/>
+<Button Weight="50" Size="50,20" Name="searchpkg_mat" Text="refresh" ToolTip="ttp_refreshpkg_mat">
+<OnClick><submit next="pkg_matLst"/>	</OnClick>
+</Button>
+<TAB/><TAB/><Button OnClick="(pkg_matLst)GetPage(First)" Size="50,20" Name="FPpkg_matLst" Text="firstpage"/>
+<TAB/><Button Weight="50" OnClick="(pkg_matLst)GetPage(Pre)" Size="50,20" Name="PREpkg_matLst" Text="prepage"/>
+<TAB/><Button Weight="50" OnClick="(pkg_matLst)GetPage(Next)" Size="50,20" Name="NPpkg_matLst" Text="nextpage"/>
+</Ctrls></GroupBox>

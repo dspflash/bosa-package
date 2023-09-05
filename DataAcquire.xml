@@ -1,0 +1,40 @@
+﻿<WndTap Name="DataAcquire" Text="数据采集"><var name="imported" expr="1"/><Ctrls>
+<GroupBox  Name="GBDataAcquire" id="DataAcquire" Text="数据采集" Size="100,100"><Ctrls><GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12"><Ctrls>
+	<Label Name="lb_filename" Size="100,20"	Text="数据源文件"></Label>
+	<TextBox Name="TB_filename" Size="500,20" Text="layout\ucin\bosa_tester\bk\BOSAautotest_Data.mdb" readonly="0"/>
+	<TextBox Name="dataid" Size="80,20" Text="0" readonly="1">
+		<DbDetails><queryFormat>SELECT IFNULL(MAX(id),0) FROM mac_10gbosadata</queryFormat></DbDetails></TextBox>
+	<Button Name="search" Size="100,20" Text="查找">
+		<OnClick>
+			<submit next="dataid"/>
+			<submit next="dataList" delay="500"/>
+			<assign name="imported" expr="0" delay="1000"/>
+			</OnClick></Button>
+	<Button Name="import" Text="导入" Clickneedconfirm="true" Size="50,20">
+		<OnClick><if cond="(%{dataList[rowcount]}&&!%{imported})"><assign name="imported" expr="1"/>
+			<import button="import">sql:INSERT INTO bosa.mac_10gbosadata (ID, SN, NewSN, Tester, ProductBill, InfOne, InfTwo, InfThree, InfFour, InfFive, InfSix, TestType, TestTemp, TestMethod, TcMode, TeMode, Vbr, Vapd, Sen, OL, Res, Icc, Idark, IXtalk, EXtalk, Gain, MDPId, Ith, Rs, SE, IKink, PIMKink, MKink, Kink, Iop, Vop, Im, ImNfa, Pf, Imtepf, Te, Tc, Result, WorkerID, TestDate)VALUES('%{ID}', '%{SN}', '%{NewSN}', '%{Tester}', '%{ProductBill}', '%{InfOne}', '%{InfTwo}', '%{InfThree}', '%{InfFour}', '%{InfFive}', '%{InfSix}', '%{TestType}', '%{TestTemp}', '%{TestMethod}', '%{TcMode}', '%{TeMode}', '%{Vbr}', '%{Vapd}', '%{Sen}', '%{OL}', '%{Res}', '%{Icc}', '%{Idark}', '%{IXtalk}', '%{EXtalk}', '%{Gain}', '%{MDPId}', '%{Ith}', '%{Rs}', '%{SE}', '%{IKink}', '%{PIMKink}', '%{MKink}', '%{Kink}', '%{Iop}', '%{Vop}', '%{Im}', '%{ImNfa}', '%{Pf}', '%{Imtepf}', '%{Te}', '%{Tc}', '%{Result}', '%{WorkerID}', '%{TestDate}');</import>
+			<submit next="dataList" namelist="import" function="import"/>
+			<else/>
+			<info expr="无数据可导入！"/>
+			</if>
+		</OnClick></Button>
+	<!--Button Name="delreplica" Size="100,20" Text="去重">
+		<OnClick>
+			<DbDetails><queryFormat>DELETE t FROM mac_10gbosadata t JOIN mac_10gbosadata s ON t.sn=s.SN WHERE t.ID&lt;s.ID</queryFormat></DbDetails><submit namelist="DbDetails"/>
+			</OnClick></Button-->
+</Ctrls></GroupBox><BR AutoHeight="1"/>
+<GroupBox Name="GBDVpkg_mat" cols="xs12 sm12 md12 lg12"><Ctrls>
+	<ListCtrl Name="dataList" PageSize="5" Size="700,500" OnLoad="">
+		<DbDetails>
+			<Host>local</Host>
+			<Database>%{TB_filename}</Database>
+			<SubDriver>MSAccess</SubDriver>
+			<DbTable>mac_10gbosadata</DbTable>
+			<Index>id</Index>
+			<Data>*</Data>
+			<Where>id&gt;%{dataid}</Where>
+			</DbDetails>
+		</ListCtrl>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
+</Ctrls></WndTap>

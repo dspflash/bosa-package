@@ -1,0 +1,42 @@
+﻿<GroupBox Name="GBDEDITpkg_pkg"><Ctrls>
+<GroupBox Multiline="0" Name="GB_pkg_id" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_pkg_id" Text="pkg_id"/>
+<TextBox Weight="110" Size="110,20" Name="pkg_id" Text="" ToolTip="ttp_pkg_id">
+	<DbDetails>
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg</DbTable>
+<Data>pkg_sn,pkg_id</Data>
+<Where>pkg_tp='bag'</Where>
+<queryFormat/></DbDetails></TextBox>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_pkg_x_id" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_pkg_x_id" Text="pkg_x_id"/>
+<TextBox Weight="110" Size="110,20" Name="pkg_x_id" Text="" ToolTip="ttp_pkg_x_id">
+	<DbDetails>
+<Index>pkg_id</Index>
+<DbTable>bosa.pkg</DbTable>
+<Data>pkg_sn,pkg_id</Data>
+<Where>pkg_tp='box'</Where>
+<queryFormat/></DbDetails><OnEnterKey><if cond="'%{pkg_x_id}'&&!'%{pkg_x_id[pkg_id]}'"><DbDetails><where>pkg_sn='%{pkg_x_id}'</where></DbDetails><submit namelist="DbDetails" next="pkg_x_id"/><if cond="%{bat}"><Sleep interval="500"/><submit function="click" next="insertpkg_pkg"/></if></if></OnEnterKey></TextBox>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_dt" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_dt" Visible="false" Text="created_dt"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="created_dt" Visible="false" Text="" ToolTip="ttp_created_dt"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_by" Visible="false" Text="created_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="created_by" Visible="false" Text="" ToolTip="ttp_created_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_updated_dt" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_updated_dt" Visible="false" Text="updated_dt"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="updated_dt" Visible="false" Text="" ToolTip="ttp_updated_dt"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_updated_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_updated_by" Visible="false" Text="updated_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="updated_by" Visible="false" Text="" ToolTip="ttp_updated_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_pkg_pkg_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_pkg_pkg_id" Visible="false" Text="pkg_pkg_id" readonly="true"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="pkg_pkg_id" Visible="false" Text="" ToolTip="ttp_pkg_pkg_id" readonly="true"><OnEnChange><if cond="'%{pkg_pkg_id}'"><if cond="%{bat}"><submit function="reset" next="pkg_x_id"/><submit next="pkg_units"/><else/><SetVisible name="insertpkg_pkg" Visible="0"/><SetVisible name="modifypkg_pkg" Visible="1"/></if><else/><SetVisible name="insertpkg_pkg" Visible="1"/><SetVisible name="modifypkg_pkg" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+<BR AutoHeight="1"/><Label Size="100,20"/><CheckBox Size="60,20" Name="bat" Checked="true" Text="自动" ToolTip="ttp_bat"/><TextBox Size="40,20" Name="pkg_units" ToolTip="ttp_pkg_units" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg_pkg</DbTable><Data>COUNT(*)</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails><OnEnchange><if cond="%{pkg_units}&gt;=%{pkg_maxunits}"><SetVisible name="insertpkg_pkg" Visible="0"/><assign expr="0" name="bat"/></if></OnEnchange></TextBox><TextBox Size="40,20" Name="pkg_maxunits" ToolTip="ttp_pkg_maxunits" readonly="1"><DbDetails><Index>pkg_id</Index><DbTable>pkg JOIN pkg_specification ON pkg_spec=specification_id</DbTable><Data>max_units</Data><Where>pkg_id='%{pkg_id[pkg_id]}'</Where></DbDetails></TextBox></Ctrls></GroupBox>

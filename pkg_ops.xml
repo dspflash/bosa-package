@@ -1,0 +1,15 @@
+﻿<operator refresh="1" initial="0" firstpage="0" prepage="0" nextpage="0">
+<op text="modify"><DbDetails><Where>pkg_id='%{pkg_vLst[pkg_id]}'</Where></DbDetails><submit namelist="DbDetails" next="$this.pkg.pkgLst"/><assign name="$this.pkg.frmwndctrl" expr="%{this}"/></op>
+<op text="print">
+	<DbDetails><Where>item_id_m=%{pkg_vLst[item_id_m]}</Where></DbDetails><submit next="pkg_print.item_vLst" namelist="DbDetails"/>
+	<assign name="pkg_print.itemname" expr="%{pkg_vLst[item_name]}"/>
+	<assign name="pkg_print.itemnumber" expr="%{pkg_vLst[item_number]}"/>
+	<assign name="pkg_print.quantity" expr="%{pkg_vLst[cnts]}"/>
+	<assign name="pkg_print.pkg_no" expr="%{pkg_vLst[pkg_sn]}"/>
+	<assign name="pkg_print.lb_pkg_no" expr="盒号:"/></op>
+<op text="delete" needconfirm="1"><DbDetails>
+<DbTable>bosa.pkg</DbTable>
+<Where>pkg_id='%{pkg_vLst[pkg_id]}'</Where>
+<queryFormat>delete from %{table} where %{where}</queryFormat></DbDetails>
+<submit namelist="DbDetails"/><submit/></op>
+</operator>

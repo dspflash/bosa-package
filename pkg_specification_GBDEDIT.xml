@@ -1,0 +1,46 @@
+﻿<GroupBox Name="GBDEDITpkg_specification"><Ctrls>
+<GroupBox Multiline="0" Name="GB_specification_name" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_specification_name" Text="specification_name"/>
+<TextBox Weight="110" Size="110,20" Name="specification_name" Text="" ToolTip="ttp_specification_name"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_pkg_tp" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_pkg_tp" Text="pkg_tp"/>
+<ComboBox Items="box|bag|carton" Weight="110" Size="110,100" Name="pkg_tp" Text="" ToolTip="ttp_pkg_tp"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_max_units" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_max_units" Text="max_units"/>
+<TextBox Weight="110" Size="110,20" Name="max_units" Text="" ToolTip="ttp_max_units"/>
+</Ctrls></GroupBox>
+<BR AutoHeight="1"/><GroupBox Multiline="0" Name="GB_bc_label" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_bc_label" Text="bc_label"/>
+<TextBox Weight="110" Size="110,20" Name="bc_label" Text="" ToolTip="ttp_bc_label"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_specification" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_specification" Text="specification"/>
+<TextBox Weight="110" Size="110,20" Name="specification" Text="" ToolTip="ttp_specification"/>
+</Ctrls></GroupBox>
+<GroupBox Multiline="0" Name="GB_structure" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" Size="120,20" Name="lb_structure" Text="structure"/>
+<TextBox Weight="110" Size="110,20" Name="structure" Text="" ToolTip="ttp_structure"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_created_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_created_by" Visible="false" Text="created_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="created_by" Visible="false" Text="" ToolTip="ttp_created_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_creation_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_creation_date" Visible="false" Text="creation_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="creation_date" Visible="false" Text="" ToolTip="ttp_creation_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_by" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_by" Visible="false" Text="last_update_by"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="last_update_by" Visible="false" Text="" ToolTip="ttp_last_update_by"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_last_update_date" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_last_update_date" Visible="false" Text="last_update_date"/>
+<DateTime overlap="pre" Weight="110" Format="yyyy-MM-dd HH:mm:ss" Size="110,20" Name="last_update_date" Visible="false" Text="" ToolTip="ttp_last_update_date"/>
+</Ctrls></GroupBox>
+<GroupBox overlap="pre" Multiline="0" Name="GB_specification_id" Visible="false" cols="xs12 sm6 md4"><Ctrls>
+<Label Align="Right" overlap="pre" Size="120,20" Name="lb_specification_id" Visible="false" Text="specification_id" readonly="true"/>
+<TextBox overlap="pre" Weight="110" Size="110,20" Name="specification_id" Visible="false" Text="" ToolTip="ttp_specification_id" readonly="true"><OnEnChange><if cond="'%{specification_id}'"><SetVisible name="insertpkg_specification" Visible="0"/><SetVisible name="modifypkg_specification" Visible="1"/><else/><SetVisible name="insertpkg_specification" Visible="1"/><SetVisible name="modifypkg_specification" Visible="0"/></if></OnEnChange></TextBox>
+</Ctrls></GroupBox>
+</Ctrls></GroupBox>
